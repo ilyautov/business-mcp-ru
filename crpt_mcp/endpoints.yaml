@@ -1,0 +1,365 @@
+default_host: markirovka.crpt.ru
+endpoints:
+- operation_id: crpt_gis_auth_key
+  section: auth
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/auth/key
+  scope: gis-mt
+  safety: read
+  summary: Получить случайные данные для подписи при входе в ГИС МТ
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_auth_simplesignin
+  section: auth
+  method: POST
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/auth/simpleSignIn
+  scope: gis-mt
+  safety: write
+  summary: Обменять подписанные данные на токен доступа
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cises_info
+  section: cises
+  method: POST
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/cises/info
+  scope: gis-mt
+  safety: read
+  summary: Сведения о кодах маркировки, пакетом до 1000 штук
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cises_my
+  section: cises
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/cises/my
+  scope: gis-mt
+  safety: read
+  summary: Коды маркировки, принадлежащие участнику оборота
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cises_short_list
+  section: cises
+  method: POST
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/cises/short/list
+  scope: gis-mt
+  safety: read
+  summary: Краткие сведения о кодах маркировки
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cises_orders_by_id_status
+  section: cises
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/cises/orders/{cisOrderUuid}/status
+  scope: gis-mt
+  safety: read
+  summary: Статус задания на выгрузку кодов
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cises_orders_by_id_result
+  section: cises
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/cises/orders/{cisOrderUuid}/result
+  scope: gis-mt
+  safety: read
+  summary: Результат задания на выгрузку кодов
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_dispenser_tasks
+  section: cises
+  method: POST
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/dispenser/tasks
+  scope: gis-mt
+  safety: write
+  summary: Создать задание на выгрузку кодов по фильтру
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_product_route_gtin
+  section: products
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v3/true-api/product/route/gtin
+  scope: gis-mt
+  safety: read
+  summary: Маршрут товара по GTIN
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_doc_by_id_info
+  section: documents
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v4/true-api/doc/{documentId}/info
+  scope: gis-mt
+  safety: read
+  summary: Сведения о документе в ГИС МТ
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_codes_check
+  section: codes
+  method: POST
+  host: markirovka.crpt.ru
+  path: /api/v4/true-api/codes/check
+  scope: gis-mt
+  safety: read
+  summary: Проверка кодов маркировки на подлинность
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cdn_info
+  section: codes
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v4/true-api/cdn/info
+  scope: gis-mt
+  safety: read
+  summary: Список узлов CDN для проверки кодов
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cdn_health_check
+  section: codes
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v4/true-api/cdn/health/check
+  scope: gis-mt
+  safety: read
+  summary: Доступность узла CDN
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cis_check
+  section: codes
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v1/cis/check
+  scope: gis-mt
+  safety: read
+  summary: Публичная проверка кода маркировки
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_cis_outcheck
+  section: codes
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v1/cis/outCheck
+  scope: gis-mt
+  safety: read
+  summary: Публичная проверка кода, выведенного из оборота
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_order
+  section: orders
+  method: POST
+  host: suz.crpt.ru
+  path: /api/v3/order
+  scope: suz
+  safety: write
+  summary: Создать заказ на эмиссию кодов маркировки
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_order_status
+  section: orders
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/order/status
+  scope: suz
+  safety: read
+  summary: Статус заказа на эмиссию кодов
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_order_list
+  section: orders
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/order/list
+  scope: suz
+  safety: read
+  summary: Список заказов на эмиссию
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_order_close
+  section: orders
+  method: POST
+  host: suz.crpt.ru
+  path: /api/v3/order/close
+  scope: suz
+  safety: write
+  summary: Закрыть заказ на эмиссию
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_order_product
+  section: orders
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/order/product
+  scope: suz
+  safety: read
+  summary: Товары в заказе на эмиссию
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_codes
+  section: codes
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/codes
+  scope: suz
+  safety: read
+  summary: Получить эмитированные коды маркировки
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_order_codes_retry
+  section: codes
+  method: POST
+  host: suz.crpt.ru
+  path: /api/v3/order/codes/retry
+  scope: suz
+  safety: write
+  summary: Повторный запрос кодов по заказу
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_order_codes_blocks
+  section: codes
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/order/codes/blocks
+  scope: suz
+  safety: read
+  summary: Блоки кодов в заказе
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_quality
+  section: quality
+  method: POST
+  host: suz.crpt.ru
+  path: /api/v3/quality
+  scope: suz
+  safety: write
+  summary: Отчёт о нанесении и качестве кодов
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_quality_cislist
+  section: quality
+  method: POST
+  host: suz.crpt.ru
+  path: /api/v3/quality/cisList
+  scope: suz
+  safety: write
+  summary: Отчёт о качестве по списку кодов
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_receipts_document
+  section: receipts
+  method: POST
+  host: suz.crpt.ru
+  path: /api/v3/receipts/document
+  scope: suz
+  safety: write
+  summary: Передать документ по чекам
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_receipts_receipt
+  section: receipts
+  method: POST
+  host: suz.crpt.ru
+  path: /api/v3/receipts/receipt
+  scope: suz
+  safety: write
+  summary: Передать чек
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_receipts_receipt_search
+  section: receipts
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/receipts/receipt/search
+  scope: suz
+  safety: read
+  summary: Поиск переданных чеков
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_ping
+  section: system
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/ping
+  scope: suz
+  safety: read
+  summary: Проверка доступности СУЗ
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_providers
+  section: system
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/providers
+  scope: suz
+  safety: read
+  summary: Список доступных провайдеров эмиссии
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_integration_connection
+  section: system
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v3/integration/connection
+  scope: suz
+  safety: read
+  summary: Проверка параметров интеграции
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_suz_status
+  section: system
+  method: GET
+  host: suz.crpt.ru
+  path: /api/v1/status
+  scope: suz
+  safety: read
+  summary: Статус станции управления заказами, версия 1
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false
+- operation_id: crpt_gis_documents_search
+  section: documents
+  method: GET
+  host: markirovka.crpt.ru
+  path: /api/v3/documents/search
+  scope: gis-mt
+  safety: read
+  summary: Поиск документов в ГИС МТ
+  doc: https://markirovka.crpt.ru/api-docs
+  pagination: none
+  verified: false

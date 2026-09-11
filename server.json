@@ -1,0 +1,67 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ilyautov/business-mcp-ru",
+  "title": "Business MCP (RU) — hh.ru, VK, Диадок, СБИС, Честный знак",
+  "description": "Российские деловые сервисы для ИИ-ассистентов: вакансии и отклики hh.ru, сообщества и реклама VK, ЭДО Диадок и СБИС, коды маркировки Честного знака. Каталог методов со схемами, у каждого класс доступа.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/ilyautov/business-mcp-ru",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "business-mcp-ru",
+      "version": "0.1.0",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "HH_TOKEN",
+          "description": "Токен приложения hh.ru (dev.hh.ru → Мои приложения). Нужен только для hh-mcp.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "HH_APP_NAME",
+          "description": "Имя приложения и контактный email для заголовка HH-User-Agent: без него hh отклоняет запросы.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "VK_TOKEN",
+          "description": "Сервисный ключ приложения VK или токен сообщества с нужными правами.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "DIADOC_CLIENT_ID",
+          "description": "Идентификатор приложения Диадок, выдаёт Контур по запросу.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "DIADOC_TOKEN",
+          "description": "Токен пользователя Диадок, выдаёт метод Authenticate.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "SBIS_SESSION_ID",
+          "description": "Идентификатор сессии Saby (СБИС) от команды СБИС.Аутентифицировать.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "CRPT_TOKEN",
+          "description": "Токен ГИС МТ, выдаётся в обмен на данные, подписанные КЭП. Живёт около 10 часов.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

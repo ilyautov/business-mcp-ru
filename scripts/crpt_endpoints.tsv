@@ -1,0 +1,40 @@
+# Методы ГИС МТ («Честный знак») и СУЗ. Полная документация ЦРПТ открывается
+# только после входа по КЭП, поэтому пути здесь взяты из открытых SDK и
+# проверяются по ним: github.com/spoleto-software/Spoleto.TrueApi (C#) и
+# github.com/lalexs75/crpt_true_api. Глаголы у части методов восстановлены по
+# семантике и помечены в каталоге как требующие проверки на живом контуре.
+# host	section	method	path	safety	summary
+markirovka.crpt.ru	auth	GET	/api/v3/true-api/auth/key	read	Получить случайные данные для подписи при входе в ГИС МТ
+markirovka.crpt.ru	auth	POST	/api/v3/true-api/auth/simpleSignIn	write	Обменять подписанные данные на токен доступа
+markirovka.crpt.ru	cises	POST	/api/v3/true-api/cises/info	read	Сведения о кодах маркировки, пакетом до 1000 штук
+markirovka.crpt.ru	cises	GET	/api/v3/true-api/cises/my	read	Коды маркировки, принадлежащие участнику оборота
+markirovka.crpt.ru	cises	POST	/api/v3/true-api/cises/short/list	read	Краткие сведения о кодах маркировки
+markirovka.crpt.ru	cises	GET	/api/v3/true-api/cises/orders/{cisOrderUuid}/status	read	Статус задания на выгрузку кодов
+markirovka.crpt.ru	cises	GET	/api/v3/true-api/cises/orders/{cisOrderUuid}/result	read	Результат задания на выгрузку кодов
+markirovka.crpt.ru	cises	POST	/api/v3/true-api/dispenser/tasks	write	Создать задание на выгрузку кодов по фильтру
+markirovka.crpt.ru	products	GET	/api/v3/true-api/product/route/gtin	read	Маршрут товара по GTIN
+markirovka.crpt.ru	documents	GET	/api/v4/true-api/doc/{documentId}/info	read	Сведения о документе в ГИС МТ
+markirovka.crpt.ru	codes	POST	/api/v4/true-api/codes/check	read	Проверка кодов маркировки на подлинность
+markirovka.crpt.ru	codes	GET	/api/v4/true-api/cdn/info	read	Список узлов CDN для проверки кодов
+markirovka.crpt.ru	codes	GET	/api/v4/true-api/cdn/health/check	read	Доступность узла CDN
+markirovka.crpt.ru	codes	GET	/api/v1/cis/check	read	Публичная проверка кода маркировки
+markirovka.crpt.ru	codes	GET	/api/v1/cis/outCheck	read	Публичная проверка кода, выведенного из оборота
+suz.crpt.ru	orders	POST	/api/v3/order	write	Создать заказ на эмиссию кодов маркировки
+suz.crpt.ru	orders	GET	/api/v3/order/status	read	Статус заказа на эмиссию кодов
+suz.crpt.ru	orders	GET	/api/v3/order/list	read	Список заказов на эмиссию
+suz.crpt.ru	orders	POST	/api/v3/order/close	write	Закрыть заказ на эмиссию
+suz.crpt.ru	orders	GET	/api/v3/order/product	read	Товары в заказе на эмиссию
+suz.crpt.ru	codes	GET	/api/v3/codes	read	Получить эмитированные коды маркировки
+suz.crpt.ru	codes	POST	/api/v3/order/codes/retry	write	Повторный запрос кодов по заказу
+suz.crpt.ru	codes	GET	/api/v3/order/codes/blocks	read	Блоки кодов в заказе
+suz.crpt.ru	quality	POST	/api/v3/quality	write	Отчёт о нанесении и качестве кодов
+suz.crpt.ru	quality	POST	/api/v3/quality/cisList	write	Отчёт о качестве по списку кодов
+suz.crpt.ru	receipts	POST	/api/v3/receipts/document	write	Передать документ по чекам
+suz.crpt.ru	receipts	POST	/api/v3/receipts/receipt	write	Передать чек
+suz.crpt.ru	receipts	GET	/api/v3/receipts/receipt/search	read	Поиск переданных чеков
+suz.crpt.ru	system	GET	/api/v3/ping	read	Проверка доступности СУЗ
+suz.crpt.ru	system	GET	/api/v3/providers	read	Список доступных провайдеров эмиссии
+suz.crpt.ru	system	GET	/api/v3/integration/connection	read	Проверка параметров интеграции
+suz.crpt.ru	system	GET	/api/v1/status	read	Статус станции управления заказами, версия 1
+suz.crpt.ru	system	GET	/api/v2/status	read	Статус станции управления заказами, версия 2
+markirovka.crpt.ru	documents	GET	/api/v3/documents/search	read	Поиск документов в ГИС МТ
