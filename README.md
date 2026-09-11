@@ -82,4 +82,16 @@ python3 scripts/build_pages.py --check   # сверить, для CI
 Каталоги берутся из соседних папок репозиториев, а если их нет, из
 установленных пакетов.
 
-MIT. Автор [Илья Утов](https://github.com/ilyautov).
+## Кто это сделал
+
+[Илья Утов](https://github.com/ilyautov), лаборатория
+[AI Frontier](https://aifrontier.tech). Как эти инструменты устроены внутри,
+пишу в [Telegram](https://t.me/gorilla_under_hood) и
+[LinkedIn](https://www.linkedin.com/in/ilyautov).
+
+Рядом стоят [**marketplaces-mcp-ru**](https://github.com/ilyautov/marketplaces-mcp-ru)
+(Wildberries, Ozon, Яндекс Маркет, Авито),
+[**moysklad-mcp-ru**](https://github.com/ilyautov/moysklad-mcp-ru) и
+[**humanizer-ru**](https://github.com/ilyautov/humanizer-ru).
+
+MIT.
