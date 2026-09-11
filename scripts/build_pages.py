@@ -16,6 +16,7 @@ import argparse
 import html
 import importlib
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -26,10 +27,10 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
-# Каталоги уехали в репозитории серверов. Ищем их рядом (обычная раскладка на
-# машине), а если папки нет, берём из установленного пакета: так страницу можно
-# пересобрать и там, где склонирован только зонтик.
-NEIGHBOURS = ROOT.parent
+# Каталоги уехали в репозитории серверов. Ищем их там, куда укажет
+# MCP_NEIGHBOURS_DIR (так делает CI: checkout не умеет класть репозиторий выше
+# рабочей папки), иначе рядом с зонтиком, иначе берём из установленного пакета.
+NEIGHBOURS = Path(os.environ.get("MCP_NEIGHBOURS_DIR") or ROOT.parent)
 SITE = "https://business-mcp-ru.aifrontier.tech"
 REPO = "https://github.com/ilyautov/business-mcp-ru"
 TODAY = date.today().isoformat()

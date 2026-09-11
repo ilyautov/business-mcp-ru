@@ -14,19 +14,22 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      # Каталоги живут в репозиториях серверов: страницы собираются из них,
-      # поэтому для сборки сайта их надо положить рядом.
+      # Каталоги живут в репозиториях серверов: страницы собираются из них.
+      # checkout умеет класть только внутрь рабочей папки, поэтому соседи
+      # приезжают в neighbours/, а путь передаётся через MCP_NEIGHBOURS_DIR.
       - uses: actions/checkout@v5
-        with: { repository: ilyautov/hh-mcp-ru, path: ../hh-mcp-ru }
+        with: { repository: ilyautov/hh-mcp-ru, path: neighbours/hh-mcp-ru }
       - uses: actions/checkout@v5
-        with: { repository: ilyautov/vk-mcp-ru, path: ../vk-mcp-ru }
+        with: { repository: ilyautov/vk-mcp-ru, path: neighbours/vk-mcp-ru }
       - uses: actions/checkout@v5
-        with: { repository: ilyautov/diadoc-mcp-ru, path: ../diadoc-mcp-ru }
+        with: { repository: ilyautov/diadoc-mcp-ru, path: neighbours/diadoc-mcp-ru }
       - uses: actions/checkout@v5
-        with: { repository: ilyautov/sbis-mcp-ru, path: ../sbis-mcp-ru }
+        with: { repository: ilyautov/sbis-mcp-ru, path: neighbours/sbis-mcp-ru }
       - uses: actions/checkout@v5
-        with: { repository: ilyautov/chestny-znak-mcp-ru, path: ../chestny-znak-mcp-ru }
+        with: { repository: ilyautov/chestny-znak-mcp-ru, path: neighbours/chestny-znak-mcp-ru }
       - run: pip install pytest "pyyaml>=6.0,<7"
-      - run: python -m pytest tests/ -q
+      - env: { MCP_NEIGHBOURS_DIR: neighbours }
+        run: python -m pytest tests/ -q
       - name: Страницы совпадают с каталогами
+        env: { MCP_NEIGHBOURS_DIR: neighbours }
         run: python scripts/build_pages.py --check
