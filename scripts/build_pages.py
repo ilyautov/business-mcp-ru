@@ -487,6 +487,7 @@ def head(title: str, desc: str, canonical: str, jsonld: dict) -> str:
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="yandex-verification" content="d5488a184cbab7f7" /> <!-- pragma: allowlist secret, публичный код подтверждения прав -->
 <meta name="description" content="{esc(desc)}" />
 <link rel="canonical" href="{canonical}" />
 <meta property="og:title" content="{esc(title)}" />
