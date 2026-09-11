@@ -3,6 +3,13 @@
 Пять MCP-серверов для российских деловых сервисов. Каждый живёт своим
 репозиторием и ставится отдельно; здесь общий вход, страницы и список.
 
+[![PyPI](https://img.shields.io/pypi/v/business-mcp-ru?label=pypi&color=B5491F)](https://pypi.org/project/business-mcp-ru/)
+[![CI](https://github.com/ilyautov/business-mcp-ru/actions/workflows/ci.yml/badge.svg)](https://github.com/ilyautov/business-mcp-ru/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Методов](https://img.shields.io/badge/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2-698-2D7D4F)](#business-mcp-ru)
+[![Сайт](https://img.shields.io/badge/%D1%81%D0%B0%D0%B9%D1%82-business--mcp--ru-9A3E1A)](https://business-mcp-ru.aifrontier.tech/)
+[![Звёзды](https://img.shields.io/github/stars/ilyautov/business-mcp-ru?style=flat&label=%D0%B7%D0%B2%D1%91%D0%B7%D0%B4%D1%8B&color=B5491F&logo=github&logoColor=white)](https://github.com/ilyautov/business-mcp-ru/stargazers)
+
 | репозиторий | сервис | методов | спрос/мес | страница |
 |---|---|---|---|---|
 | [chestny-znak-mcp-ru](https://github.com/ilyautov/chestny-znak-mcp-ru) | API Честного знака (ГИС МТ) | 33 | 1 976 | [chestny-znak-api](https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html) |
