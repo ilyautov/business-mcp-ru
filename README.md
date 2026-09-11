@@ -94,4 +94,7 @@ python3 scripts/build_pages.py --check   # сверить, для CI
 [**moysklad-mcp-ru**](https://github.com/ilyautov/moysklad-mcp-ru) и
 [**humanizer-ru**](https://github.com/ilyautov/humanizer-ru).
 
+Все проекты одним списком, разобранные по назначению:
+[ilyautov.github.io](https://ilyautov.github.io/).
+
 MIT.
