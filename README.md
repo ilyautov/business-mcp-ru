@@ -10,9 +10,13 @@
 | [vk-mcp-ru](https://github.com/ilyautov/vk-mcp-ru) | VK API | 373 | 1 344 | [vk-api](https://business-mcp-ru.aifrontier.tech/vk-api.html) |
 | [hh-mcp-ru](https://github.com/ilyautov/hh-mcp-ru) | API hh.ru | 133 | 911 | [hh-api](https://business-mcp-ru.aifrontier.tech/hh-api.html) |
 | [sbis-mcp-ru](https://github.com/ilyautov/sbis-mcp-ru) | API СБИС (Saby) | 45 | 877 | [sbis-api](https://business-mcp-ru.aifrontier.tech/sbis-api.html) |
+| [marketplaces-mcp-ru](https://github.com/ilyautov/marketplaces-mcp-ru) | Wildberries, Ozon, Яндекс Маркет, Авито | 1 022 | 6 503 | [marketplaces-mcp-ru.aifrontier.tech](https://marketplaces-mcp-ru.aifrontier.tech/) |
 
-Всего 698 методов. Маркетплейсы (Wildberries, Ozon, Яндекс Маркет, Авито)
-живут отдельно: [marketplaces-mcp-ru](https://github.com/ilyautov/marketplaces-mcp-ru).
+Всего 698 методов в пяти серверах отсюда, плюс 1 022 в маркетплейсах.
+
+Последняя строка это отдельный проект: он старше, ставится одним пакетом сразу
+на четыре площадки, и спрос в его строке это сумма по ним. Здесь же каждый
+сервис ставится сам по себе.
 
 ## Поставить один
 

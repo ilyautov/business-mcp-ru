@@ -40,7 +40,15 @@ def test_method_counts_in_readme_match_the_catalogs():
         n = len(bp.load(p["svc"]))
         total += n
         assert f"| {n} |" in readme, f'{p["repo"]}: в README нет «{n}»'
-    assert f"Всего {total} методов" in readme
+    assert f"Всего {total} методов в пяти серверах" in readme
+
+
+def test_marketplaces_are_listed_too():
+    """Маркетплейсы это соседний проект, но читателю он виден как часть семьи:
+    пропустить его строкой значит спрятать 1 022 метода."""
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "marketplaces-mcp-ru" in readme
+    assert "1 022" in readme
 
 
 def test_pages_are_in_sitemap():
