@@ -65,3 +65,43 @@ def test_no_code_ships_in_the_hub():
     stray = [d.name for d in ROOT.iterdir()
              if d.is_dir() and (d.name.endswith("_mcp") or d.name == "core")]
     assert not stray, f"в зонтике снова лежит код сервера: {stray}"
+
+
+def test_schema_version_matches_the_packages():
+    """`softwareVersion` в schema.org это обещание поисковику.
+
+    Оно уже один раз разошлось: на страницах стояло 0.1.0, когда пакеты давно
+    выпустились как 0.2.0. Глазами такое не ловится, там нет ни ошибки, ни
+    падения, просто число живёт своей жизнью.
+    """
+    bp = pages()
+    for p in bp.PAGES:
+        pyproject = bp.NEIGHBOURS / p["repo"] / "pyproject.toml"
+        if not pyproject.exists():          # соседей нет, проверять нечего
+            continue
+        m = re.search(r'^version = "([^"]+)"', pyproject.read_text(encoding="utf-8"), re.M)
+        assert m, f'{p["repo"]}: в pyproject нет версии'
+        assert m.group(1) == bp.VERSION, (
+            f'{p["repo"]} выпущен как {m.group(1)}, а страницы пишут {bp.VERSION}')
+
+
+def test_both_subdomains_link_to_each_other():
+    """Девять серверов на двух поддоменах. Односторонняя перелинковка значит,
+    что половина из них для пришедшего человека не существует."""
+    bp = pages()
+    for name in ["index.html"] + [p["file"] for p in bp.PAGES]:
+        page = (ROOT / "docs" / name).read_text(encoding="utf-8")
+        assert bp.MARKETPLACES in page, f"{name}: нет ссылки на соседний набор"
+
+
+def test_service_pages_carry_errors_and_faq():
+    """Страница сервиса это справочник, а не карточка товара: хвост запросов
+    у всех четырёх кластеров одинаковый и состоит из «где ключ», «где
+    документация», «почему не работает»."""
+    bp = pages()
+    for p in bp.PAGES:
+        assert len(p["errors"]) >= 3, f'{p["repo"]}: мало разборов ошибок'
+        assert len(p["faq"]) >= 4, f'{p["repo"]}: мало вопросов'
+        page = (ROOT / "docs" / p["file"]).read_text(encoding="utf-8")
+        assert "Частые ошибки" in page and "Частые вопросы" in page
+        assert '"FAQPage"' in page and '"BreadcrumbList"' in page

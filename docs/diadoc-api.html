@@ -34,7 +34,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "diadoc-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API Диадока: 114 методов. Входящие и исходящие документы, статусы документооборота, контрагенты и приглашения к ЭДО, подписание, МЧД, печатные формы.", "url": "https://business-mcp-ru.aifrontier.tech/diadoc-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "diadoc-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API Диадока: 114 методов. Входящие и исходящие документы, статусы документооборота, контрагенты и приглашения к ЭДО, подписание, МЧД, печатные формы.", "url": "https://business-mcp-ru.aifrontier.tech/diadoc-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.2.0", "license": "https://opensource.org/licenses/MIT", "codeRepository": "https://github.com/ilyautov/diadoc-mcp-ru"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "business-mcp-ru", "item": "https://business-mcp-ru.aifrontier.tech/"}, {"@type": "ListItem", "position": 2, "name": "API Диадока (Контур) в ИИ-ассистенте", "item": "https://business-mcp-ru.aifrontier.tech/diadoc-api.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Как получить доступ к API Диадока?", "acceptedAnswer": {"@type": "Answer", "text": "Написать в Контур на diadoc-api@skbkontur.ru и получить идентификатор приложения. Для продуктива нужна лицензия, для проб есть тестовый контур. Токен пользователя дальше выдаёт метод Authenticate."}}, {"@type": "Question", "name": "Можно ли подписывать документы через API?", "acceptedAnswer": {"@type": "Answer", "text": "Методы подписания в каталоге есть и помечены как необратимые, то есть агент обязан спросить подтверждение. Сама подпись при этом делается средствами криптопровайдера на машине пользователя, закрытый ключ в сервер не попадает."}}, {"@type": "Question", "name": "Где документация API Диадока?", "acceptedAnswer": {"@type": "Answer", "text": "developer.kontur.ru/doc/diadoc-api. Каталог этого сервера собран оттуда, 114 методов с разделами и классами доступа."}}, {"@type": "Question", "name": "Чем Диадок отличается от СБИС в этом наборе?", "acceptedAnswer": {"@type": "Answer", "text": "Это два разных оператора ЭДО, и серверы у них отдельные: разные хосты, разные схемы авторизации, разные каталоги. Если контрагенты у вас в обоих, ставьте оба, они не мешают друг другу."}}]}]}</script>
 </head>
 <body>
 
@@ -46,6 +46,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
   <a href="/diadoc-api.html">API Диадока (Контур)</a>
   <a href="/sbis-api.html">API СБИС (Saby)</a>
   <a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a>
+  <a href="https://marketplaces-mcp-ru.aifrontier.tech/">Маркетплейсы: WB, Ozon, Яндекс, Авито</a>
 </nav></header>
 <p class="crumbs"><a href="/">business-mcp-ru</a> → API Диадока (Контур) в ИИ-ассистенте</p>
 <h1>API Диадока (Контур) в ИИ-ассистенте</h1>
@@ -96,6 +97,17 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <pre><code>diadoc_search_methods("...")   поиск метода словами, а не по имени эндпоинта
 diadoc_describe_method(...)   параметры, пагинация, класс доступа
 diadoc_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
+
+<h2>Частые ошибки и что они значат</h2>
+<h3>401, хотя и client_id, и токен на месте</h3><p>Проверьте пробелы. Диадок ждёт заголовок вида <code>DiadocAuth ddauth_api_client_id=&lt;id&gt;,ddauth_token=&lt;token&gt;</code>, и он разбирается строкой: лишний пробел после запятой ломает авторизацию. Сервер собирает заголовок сам, но если вы проверяете curl-ом, это первое место, куда стоит смотреть.</p>
+<h3>Один секрет есть, другого нет</h3><p>Их действительно два, и они выдаются по-разному. Идентификатор приложения запрашивается у Контура письмом на diadoc-api@skbkontur.ru, а токен пользователя отдаёт метод Authenticate по логину с паролем или по сертификату. Один без другого не работает.</p>
+<h3>404 на методе из документации</h3><p>В API Диадока одновременно живут несколько версий пути, от V1 до V4, и у соседних методов они разные. Версия это часть пути, а не заголовок, поэтому при 404 сверяйте её раньше всего остального.</p>
+
+<h2>Частые вопросы</h2>
+<h3>Как получить доступ к API Диадока?</h3><p>Написать в Контур на diadoc-api@skbkontur.ru и получить идентификатор приложения. Для продуктива нужна лицензия, для проб есть тестовый контур. Токен пользователя дальше выдаёт метод Authenticate.</p>
+<h3>Можно ли подписывать документы через API?</h3><p>Методы подписания в каталоге есть и помечены как необратимые, то есть агент обязан спросить подтверждение. Сама подпись при этом делается средствами криптопровайдера на машине пользователя, закрытый ключ в сервер не попадает.</p>
+<h3>Где документация API Диадока?</h3><p>developer.kontur.ru/doc/diadoc-api. Каталог этого сервера собран оттуда, 114 методов с разделами и классами доступа.</p>
+<h3>Чем Диадок отличается от СБИС в этом наборе?</h3><p>Это два разных оператора ЭДО, и серверы у них отдельные: разные хосты, разные схемы авторизации, разные каталоги. Если контрагенты у вас в обоих, ставьте оба, они не мешают друг другу.</p>
 
 <footer>
 <p>Исходный код: <a href="https://github.com/ilyautov/diadoc-mcp-ru">github.com/ilyautov/diadoc-mcp-ru</a>.

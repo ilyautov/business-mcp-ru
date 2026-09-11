@@ -34,7 +34,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "chestny-znak-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах маркировки, выгрузка по фильтру, маршрут товара по GTIN, заказы на эмиссию кодов, отчёты о нанесении, проверка подлинности.", "url": "https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "chestny-znak-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах маркировки, выгрузка по фильтру, маршрут товара по GTIN, заказы на эмиссию кодов, отчёты о нанесении, проверка подлинности.", "url": "https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.2.0", "license": "https://opensource.org/licenses/MIT", "codeRepository": "https://github.com/ilyautov/chestny-znak-mcp-ru"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "business-mcp-ru", "item": "https://business-mcp-ru.aifrontier.tech/"}, {"@type": "ListItem", "position": 2, "name": "API Честного знака (ГИС МТ) в ИИ-ассистенте", "item": "https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Как получить токен Честного знака?", "acceptedAnswer": {"@type": "Answer", "text": "Нужна квалифицированная электронная подпись. GET /api/v3/true-api/auth/key отдаёт случайные данные, их подписывают КЭП на своей машине, а POST /api/v3/true-api/auth/simpleSignIn меняет подпись на токен."}}, {"@type": "Question", "name": "Закрытый ключ подписи попадает в сервер?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Подпись делается снаружи, средствами криптопровайдера, сервер получает уже подписанные данные и работает дальше с токеном."}}, {"@type": "Question", "name": "Почему методы помечены непроверенными?", "acceptedAnswer": {"@type": "Answer", "text": "Документация ЦРПТ открывается только после входа по КЭП, публичной спеки нет: /api/v3/true-api/swagger.json отдаёт 401. Поэтому каталог собран по открытым SDK, и честнее пометить его разведочным, чем выдать за спецификацию."}}, {"@type": "Question", "name": "Чем ГИС МТ отличается от СУЗ?", "acceptedAnswer": {"@type": "Answer", "text": "ГИС МТ это государственная система мониторинга: сведения о кодах, выгрузки, маршрут товара. СУЗ это станция управления заказами: заказ кодов на эмиссию и их статусы. Разные хосты, и в каталоге они разведены."}}]}]}</script>
 </head>
 <body>
 
@@ -46,6 +46,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
   <a href="/diadoc-api.html">API Диадока (Контур)</a>
   <a href="/sbis-api.html">API СБИС (Saby)</a>
   <a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a>
+  <a href="https://marketplaces-mcp-ru.aifrontier.tech/">Маркетплейсы: WB, Ozon, Яндекс, Авито</a>
 </nav></header>
 <p class="crumbs"><a href="/">business-mcp-ru</a> → API Честного знака (ГИС МТ) в ИИ-ассистенте</p>
 <h1>API Честного знака (ГИС МТ) в ИИ-ассистенте</h1>
@@ -93,6 +94,17 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <pre><code>crpt_search_methods("...")   поиск метода словами, а не по имени эндпоинта
 crpt_describe_method(...)   параметры, пагинация, класс доступа
 crpt_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
+
+<h2>Частые ошибки и что они значат</h2>
+<h3>Токен перестал работать через несколько часов</h3><p>Так и задумано: токен ГИС МТ живёт около десяти часов. Получается он в два шага, ответ метода auth/key подписывается КЭП, а auth/simpleSignIn меняет подпись на токен. Обновлять придётся регулярно.</p>
+<h3>Метод не находится на том хосте, где ищете</h3><p>Хостов два, и это не опечатка. ГИС МТ живёт на markirovka.crpt.ru, а станция управления заказами на suz.crpt.ru. Это разные системы: 16 методов каталога на первом хосте и 17 на втором.</p>
+<h3>Метод отвечает не тем, что описано в карточке</h3><p>Возможно. У всех 33 записей стоит пометка «не проверено», потому что публичной спеки у ЦРПТ нет. Пути взяты из открытых SDK и надёжны, а глаголы и параметры нужно подтверждать на живом контуре. Сервер показывает этот статус в describe_method, чтобы агент не выдавал догадку за факт.</p>
+
+<h2>Частые вопросы</h2>
+<h3>Как получить токен Честного знака?</h3><p>Нужна квалифицированная электронная подпись. GET /api/v3/true-api/auth/key отдаёт случайные данные, их подписывают КЭП на своей машине, а POST /api/v3/true-api/auth/simpleSignIn меняет подпись на токен.</p>
+<h3>Закрытый ключ подписи попадает в сервер?</h3><p>Нет. Подпись делается снаружи, средствами криптопровайдера, сервер получает уже подписанные данные и работает дальше с токеном.</p>
+<h3>Почему методы помечены непроверенными?</h3><p>Документация ЦРПТ открывается только после входа по КЭП, публичной спеки нет: /api/v3/true-api/swagger.json отдаёт 401. Поэтому каталог собран по открытым SDK, и честнее пометить его разведочным, чем выдать за спецификацию.</p>
+<h3>Чем ГИС МТ отличается от СУЗ?</h3><p>ГИС МТ это государственная система мониторинга: сведения о кодах, выгрузки, маршрут товара. СУЗ это станция управления заказами: заказ кодов на эмиссию и их статусы. Разные хосты, и в каталоге они разведены.</p>
 
 <footer>
 <p>Исходный код: <a href="https://github.com/ilyautov/chestny-znak-mcp-ru">github.com/ilyautov/chestny-znak-mcp-ru</a>.

@@ -34,7 +34,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "vk-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для VK API: 373 метода по бизнес-разделам. Товары магазина сообщества, посты, рекламные кампании и статистика, диалоги с клиентами, лид-формы.", "url": "https://business-mcp-ru.aifrontier.tech/vk-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "vk-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для VK API: 373 метода по бизнес-разделам. Товары магазина сообщества, посты, рекламные кампании и статистика, диалоги с клиентами, лид-формы.", "url": "https://business-mcp-ru.aifrontier.tech/vk-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.2.0", "license": "https://opensource.org/licenses/MIT", "codeRepository": "https://github.com/ilyautov/vk-mcp-ru"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "business-mcp-ru", "item": "https://business-mcp-ru.aifrontier.tech/"}, {"@type": "ListItem", "position": 2, "name": "VK API в ИИ-ассистенте", "item": "https://business-mcp-ru.aifrontier.tech/vk-api.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Как получить токен VK API?", "acceptedAnswer": {"@type": "Answer", "text": "dev.vk.com, создать приложение и взять сервисный ключ доступа, либо выпустить токен сообщества. Права запрашивайте точечно: market для товаров, messages для диалогов, ads для рекламы, stats для статистики."}}, {"@type": "Question", "name": "Чем сервисный ключ отличается от токена сообщества?", "acceptedAnswer": {"@type": "Answer", "text": "Сервисный ключ работает от имени приложения и открывает публичные данные. Токен сообщества работает от имени группы и нужен для товаров, диалогов и статистики этой группы. Для магазина в сообществе нужен именно он."}}, {"@type": "Question", "name": "Где документация VK API?", "acceptedAnswer": {"@type": "Answer", "text": "dev.vk.com/method, а машиночитаемая схема лежит в репозитории VKCOM/vk-api-schema. Каталог собран из этой схемы, поэтому список методов не расходится с тем, что сервер умеет вызывать."}}, {"@type": "Question", "name": "Сколько методов VK поддерживает vk-mcp-ru?", "acceptedAnswer": {"@type": "Answer", "text": "373, сгруппированных по деловым разделам: товары и магазин, сообщества, реклама, диалоги, статистика, лид-формы. Агент ищет метод словами, а не листает список."}}]}]}</script>
 </head>
 <body>
 
@@ -46,6 +46,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
   <a href="/diadoc-api.html">API Диадока (Контур)</a>
   <a href="/sbis-api.html">API СБИС (Saby)</a>
   <a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a>
+  <a href="https://marketplaces-mcp-ru.aifrontier.tech/">Маркетплейсы: WB, Ozon, Яндекс, Авито</a>
 </nav></header>
 <p class="crumbs"><a href="/">business-mcp-ru</a> → VK API в ИИ-ассистенте</p>
 <h1>VK API в ИИ-ассистенте</h1>
@@ -104,6 +105,17 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <pre><code>vk_search_methods("...")   поиск метода словами, а не по имени эндпоинта
 vk_describe_method(...)   параметры, пагинация, класс доступа
 vk_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
+
+<h2>Частые ошибки и что они значат</h2>
+<h3>Пришёл HTTP 200, а данных нет</h3><p>У VK ошибка лежит в теле ответа, а не в HTTP-коде: успешный запрос к серверу и неуспешный вызов метода это разные вещи. Смотрите объект <code>error</code> в ответе, там есть код и текст.</p>
+<h3>Метод отвечает иначе, чем в документации</h3><p>Скорее всего дело в версии API. Сервер пинует <code>v=5.199</code>, и это осознанно: старая версия не ругается, а молча отдаёт другой формат ответа. Если сверяете с примером из интернета, сверьте и версию, под которую он написан.</p>
+<h3>Кажется, что любой вызов это запись</h3><p>Не кажется, но и не так. Все 373 метода VK идут через POST, поэтому HTTP-глагол тут ничего не говорит о намерении. Класс доступа в каталоге проставлен по смыслу метода, и гейт подтверждения работает именно по нему, а не по глаголу.</p>
+
+<h2>Частые вопросы</h2>
+<h3>Как получить токен VK API?</h3><p>dev.vk.com, создать приложение и взять сервисный ключ доступа, либо выпустить токен сообщества. Права запрашивайте точечно: market для товаров, messages для диалогов, ads для рекламы, stats для статистики.</p>
+<h3>Чем сервисный ключ отличается от токена сообщества?</h3><p>Сервисный ключ работает от имени приложения и открывает публичные данные. Токен сообщества работает от имени группы и нужен для товаров, диалогов и статистики этой группы. Для магазина в сообществе нужен именно он.</p>
+<h3>Где документация VK API?</h3><p>dev.vk.com/method, а машиночитаемая схема лежит в репозитории VKCOM/vk-api-schema. Каталог собран из этой схемы, поэтому список методов не расходится с тем, что сервер умеет вызывать.</p>
+<h3>Сколько методов VK поддерживает vk-mcp-ru?</h3><p>373, сгруппированных по деловым разделам: товары и магазин, сообщества, реклама, диалоги, статистика, лид-формы. Агент ищет метод словами, а не листает список.</p>
 
 <footer>
 <p>Исходный код: <a href="https://github.com/ilyautov/vk-mcp-ru">github.com/ilyautov/vk-mcp-ru</a>.
