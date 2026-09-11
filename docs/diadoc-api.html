@@ -34,7 +34,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "diadoc-mcp (API Диадока (Контур) в ИИ-ассистенте)", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API Диадока: 114 методов. Входящие и исходящие документы, статусы документооборота, контрагенты и приглашения к ЭДО, подписание, МЧД, печатные формы.", "url": "https://business-mcp-ru.aifrontier.tech/diadoc-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "diadoc-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API Диадока: 114 методов. Входящие и исходящие документы, статусы документооборота, контрагенты и приглашения к ЭДО, подписание, МЧД, печатные формы.", "url": "https://business-mcp-ru.aifrontier.tech/diadoc-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
 </head>
 <body>
 
@@ -53,7 +53,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 
 
 <h2>Установка</h2>
-<pre><code>uvx --from business-mcp-ru diadoc-mcp</code></pre>
+<pre><code>uvx diadoc-mcp-ru</code></pre>
 <p>Переменные окружения: <code>DIADOC_CLIENT_ID, DIADOC_TOKEN</code>. Ключи можно не держать в
 окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
 локальный файл с правами 600.</p>
@@ -72,7 +72,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <tr><td>Контрагенты</td><td class=num>14</td><td class=num>8</td><td class=num>4</td><td class=num>2</td></tr>
 <tr><td>Сотрудники и пользователи</td><td class=num>14</td><td class=num>8</td><td class=num>4</td><td class=num>2</td></tr>
 <tr><td>Сообщения</td><td class=num>11</td><td class=num>6</td><td class=num>5</td><td class=num>0</td></tr>
-<tr><td>Организации и ящики</td><td class=num>11</td><td class=num>10</td><td class=num>1</td><td class=num>0</td></tr>
+<tr><td>Организации и ящики</td><td class=num>11</td><td class=num>9</td><td class=num>2</td><td class=num>0</td></tr>
 <tr><td>Машиночитаемая доверенность</td><td class=num>8</td><td class=num>4</td><td class=num>3</td><td class=num>1</td></tr>
 <tr><td>Подписание</td><td class=num>8</td><td class=num>6</td><td class=num>2</td><td class=num>0</td></tr>
 <tr><td>Генерация и разбор XML</td><td class=num>8</td><td class=num>8</td><td class=num>0</td><td class=num>0</td></tr>
@@ -80,8 +80,8 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <tr><td>Печатные формы</td><td class=num>6</td><td class=num>6</td><td class=num>0</td><td class=num>0</td></tr>
 <tr><td>Полка документов</td><td class=num>6</td><td class=num>3</td><td class=num>3</td><td class=num>0</td></tr>
 <tr><td>Документооборот</td><td class=num>4</td><td class=num>4</td><td class=num>0</td><td class=num>0</td></tr>
-<tr><td><b>Всего</b></td><td class=num><b>114</b></td><td class=num><b>79</b></td>
-<td class=num><b>28</b></td><td class=num><b>7</b></td></tr>
+<tr><td><b>Всего</b></td><td class=num><b>114</b></td><td class=num><b>78</b></td>
+<td class=num><b>29</b></td><td class=num><b>7</b></td></tr>
 </tbody></table></div>
 
 <h2>Что обычно просят</h2>
@@ -98,7 +98,8 @@ diadoc_describe_method(...)   параметры, пагинация, класс
 diadoc_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
 
 <footer>
-<p>Исходный код и установка: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT.
+<p>Исходный код: <a href="https://github.com/ilyautov/diadoc-mcp-ru">github.com/ilyautov/diadoc-mcp-ru</a>.
+Соседние серверы и общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT.
 Обновлено 2026-09-11.</p>
 </footer>
 </div>

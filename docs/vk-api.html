@@ -34,7 +34,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "vk-mcp (VK API в ИИ-ассистенте)", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для VK API: 373 метода по бизнес-разделам. Товары магазина сообщества, посты, рекламные кампании и статистика, диалоги с клиентами, лид-формы.", "url": "https://business-mcp-ru.aifrontier.tech/vk-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "vk-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для VK API: 373 метода по бизнес-разделам. Товары магазина сообщества, посты, рекламные кампании и статистика, диалоги с клиентами, лид-формы.", "url": "https://business-mcp-ru.aifrontier.tech/vk-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
 </head>
 <body>
 
@@ -53,7 +53,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 
 
 <h2>Установка</h2>
-<pre><code>uvx --from business-mcp-ru vk-mcp</code></pre>
+<pre><code>uvx vk-mcp-ru</code></pre>
 <p>Переменные окружения: <code>VK_TOKEN</code>. Ключи можно не держать в
 окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
 локальный файл с правами 600.</p>
@@ -106,7 +106,8 @@ vk_describe_method(...)   параметры, пагинация, класс д�
 vk_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
 
 <footer>
-<p>Исходный код и установка: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT.
+<p>Исходный код: <a href="https://github.com/ilyautov/vk-mcp-ru">github.com/ilyautov/vk-mcp-ru</a>.
+Соседние серверы и общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT.
 Обновлено 2026-09-11.</p>
 </footer>
 </div>

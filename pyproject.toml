@@ -1,46 +1,33 @@
 [project]
 name = "business-mcp-ru"
 version = "0.1.0"
-description = "MCP-серверы для российских деловых сервисов: hh.ru, VK, Диадок, СБИС и Честный знак (каталог методов, класс доступа у каждого)"
-keywords = ["mcp", "model-context-protocol", "hh", "headhunter", "vk", "diadoc", "kontur", "sbis", "saby", "chestny-znak", "crpt", "edo", "markirovka", "russia", "claude", "cursor"]
+description = "Пять MCP-серверов для российских деловых сервисов: hh.ru, VK, Диадок, СБИС, Честный знак"
+keywords = ["mcp", "model-context-protocol", "russia", "hh", "vk", "diadoc", "sbis", "chestny-znak", "claude"]
 readme = "README.md"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Ilya Utov" }]
+# Кода здесь нет намеренно: пакет существует, чтобы поставить пять серверов
+# одной строкой. Каждый из них ставится и отдельно.
 dependencies = [
-    # Верхние границы намеренно: mcp 2.x переименовал FastMCP (mcp.server.fastmcp
-    # больше нет), и без потолка свежая установка через uvx ломается на ровном
-    # месте. httpx 1.x и pyyaml 7 держим тем же способом.
-    "mcp>=1.2,<2",
-    "httpx>=0.27,<1",
-    "pyyaml>=6.0,<7",
+    "hh-mcp-ru>=0.1,<1",
+    "vk-mcp-ru>=0.1,<1",
+    "diadoc-mcp-ru>=0.1,<1",
+    "sbis-mcp-ru>=0.1,<1",
+    "chestny-znak-mcp-ru>=0.1,<1",
 ]
 
 [project.urls]
-Homepage = "https://github.com/ilyautov/business-mcp-ru"
+Homepage = "https://business-mcp-ru.aifrontier.tech/"
 Repository = "https://github.com/ilyautov/business-mcp-ru"
 Issues = "https://github.com/ilyautov/business-mcp-ru/issues"
-Changelog = "https://github.com/ilyautov/business-mcp-ru/blob/main/CHANGELOG.md"
-
-[project.scripts]
-hh-mcp = "hh_mcp.server:main"
-vk-mcp = "vk_mcp.server:main"
-diadoc-mcp = "diadoc_mcp.server:main"
-sbis-mcp = "sbis_mcp.server:main"
-crpt-mcp = "crpt_mcp.server:main"
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
+dev = ["pytest>=8.0", "pyyaml>=6.0,<7"]
 
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["core", "hh_mcp", "vk_mcp", "diadoc_mcp", "sbis_mcp", "crpt_mcp"]
-
-[tool.setuptools.package-data]
-core = ["*.yaml"]
-hh_mcp = ["*.yaml"]
-vk_mcp = ["*.yaml"]
-diadoc_mcp = ["*.yaml"]
-sbis_mcp = ["*.yaml"]
-crpt_mcp = ["*.yaml"]
+packages = []

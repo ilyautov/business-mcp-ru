@@ -34,7 +34,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "sbis-mcp (API СБИС (Saby) в ИИ-ассистенте)", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API СБИС: 45 команд JSON-RPC. Документы и этапы документооборота, подписание вложений, сертификаты и МЧД, сотрудники, контрагенты, подразделения.", "url": "https://business-mcp-ru.aifrontier.tech/sbis-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "sbis-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API СБИС: 45 команд JSON-RPC. Документы и этапы документооборота, подписание вложений, сертификаты и МЧД, сотрудники, контрагенты, подразделения.", "url": "https://business-mcp-ru.aifrontier.tech/sbis-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
 </head>
 <body>
 
@@ -53,7 +53,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 
 
 <h2>Установка</h2>
-<pre><code>uvx --from business-mcp-ru sbis-mcp</code></pre>
+<pre><code>uvx sbis-mcp-ru</code></pre>
 <p>Переменные окружения: <code>SBIS_SESSION_ID</code>. Ключи можно не держать в
 окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
 локальный файл с правами 600.</p>
@@ -94,7 +94,8 @@ sbis_describe_method(...)   параметры, пагинация, класс �
 sbis_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
 
 <footer>
-<p>Исходный код и установка: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT.
+<p>Исходный код: <a href="https://github.com/ilyautov/sbis-mcp-ru">github.com/ilyautov/sbis-mcp-ru</a>.
+Соседние серверы и общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT.
 Обновлено 2026-09-11.</p>
 </footer>
 </div>

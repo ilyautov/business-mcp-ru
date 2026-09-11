@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import importlib
 import json
 import re
 import sys
@@ -25,6 +26,10 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
+# Каталоги уехали в репозитории серверов. Ищем их рядом (обычная раскладка на
+# машине), а если папки нет, берём из установленного пакета: так страницу можно
+# пересобрать и там, где склонирован только зонтик.
+NEIGHBOURS = ROOT.parent
 SITE = "https://business-mcp-ru.aifrontier.tech"
 REPO = "https://github.com/ilyautov/business-mcp-ru"
 TODAY = date.today().isoformat()
@@ -83,7 +88,7 @@ SECTION_NAMES: dict[str, dict[str, str]] = {
 
 PAGES = [
     {
-        "svc": "hh", "card": "Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат", "file": "hh-api.html", "entry": "hh-mcp",
+        "svc": "hh", "repo": "hh-mcp-ru", "card": "Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат", "file": "hh-api.html", "entry": "hh-mcp",
         "title": "API hh.ru в ИИ-ассистенте: вакансии, отклики, резюме",
         "h1": "API hh.ru в ИИ-ассистенте",
         "desc": "MCP-сервер для API hh.ru: 133 метода официальной спеки. "
@@ -102,7 +107,7 @@ PAGES = [
         ],
     },
     {
-        "svc": "vk", "card": "Товары магазина сообщества, посты, реклама и статистика, диалоги, лид-формы", "file": "vk-api.html", "entry": "vk-mcp",
+        "svc": "vk", "repo": "vk-mcp-ru", "card": "Товары магазина сообщества, посты, реклама и статистика, диалоги, лид-формы", "file": "vk-api.html", "entry": "vk-mcp",
         "title": "VK API в ИИ-ассистенте: товары, сообщества, реклама",
         "h1": "VK API в ИИ-ассистенте",
         "desc": "MCP-сервер для VK API: 373 метода по бизнес-разделам. "
@@ -121,7 +126,7 @@ PAGES = [
         ],
     },
     {
-        "svc": "diadoc", "card": "Входящие и исходящие документы, статусы ЭДО, контрагенты, подписание, МЧД", "file": "diadoc-api.html", "entry": "diadoc-mcp",
+        "svc": "diadoc", "repo": "diadoc-mcp-ru", "card": "Входящие и исходящие документы, статусы ЭДО, контрагенты, подписание, МЧД", "file": "diadoc-api.html", "entry": "diadoc-mcp",
         "title": "API Диадока в ИИ-ассистенте: ЭДО, документы, контрагенты",
         "h1": "API Диадока (Контур) в ИИ-ассистенте",
         "desc": "MCP-сервер для API Диадока: 114 методов. Входящие и исходящие "
@@ -141,7 +146,7 @@ PAGES = [
         ],
     },
     {
-        "svc": "sbis", "card": "Документы и этапы, подписание вложений, сертификаты, сотрудники, контрагенты", "file": "sbis-api.html", "entry": "sbis-mcp",
+        "svc": "sbis", "repo": "sbis-mcp-ru", "card": "Документы и этапы, подписание вложений, сертификаты, сотрудники, контрагенты", "file": "sbis-api.html", "entry": "sbis-mcp",
         "title": "API СБИС (Saby) в ИИ-ассистенте: документы, подпись, ЭДО",
         "h1": "API СБИС (Saby) в ИИ-ассистенте",
         "desc": "MCP-сервер для API СБИС: 45 команд JSON-RPC. Документы и этапы "
@@ -161,7 +166,7 @@ PAGES = [
         ],
     },
     {
-        "svc": "crpt", "card": "Коды маркировки, заказы на эмиссию в СУЗ, маршрут товара по GTIN, отчёты", "file": "chestny-znak-api.html", "entry": "crpt-mcp",
+        "svc": "crpt", "repo": "chestny-znak-mcp-ru", "card": "Коды маркировки, заказы на эмиссию в СУЗ, маршрут товара по GTIN, отчёты", "file": "chestny-znak-api.html", "entry": "crpt-mcp",
         "title": "API Честного знака в ИИ-ассистенте: коды маркировки и СУЗ",
         "h1": "API Честного знака (ГИС МТ) в ИИ-ассистенте",
         "desc": "MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах "
@@ -230,8 +235,23 @@ def esc(s: str) -> str:
     return html.escape(s, quote=False)
 
 
+def catalog_path(svc: str) -> Path:
+    repo = next(p["repo"] for p in PAGES if p["svc"] == svc)
+    local = NEIGHBOURS / repo / f"{svc}_mcp" / "endpoints.yaml"
+    if local.exists():
+        return local
+    try:
+        module = importlib.import_module(f"{svc}_mcp")
+    except ImportError:
+        raise SystemExit(
+            f"каталог {svc} не найден: нет ни {local}, ни установленного пакета {repo}. "
+            f"Склонируйте репозиторий рядом или поставьте пакет."
+        )
+    return Path(module.__file__).with_name("endpoints.yaml")
+
+
 def load(svc: str) -> list[dict]:
-    return yaml.safe_load((ROOT / f"{svc}_mcp" / "endpoints.yaml").read_text(encoding="utf-8"))["endpoints"]
+    return yaml.safe_load(catalog_path(svc).read_text(encoding="utf-8"))["endpoints"]
 
 
 def section_rows(svc: str) -> tuple[list[tuple[str, int, int, int, int]], int]:
@@ -301,7 +321,7 @@ def service_page(p: dict) -> str:
     jsonld = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": f'{p["entry"]} ({p["h1"]})',
+        "name": p["repo"],
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "macOS, Windows, Linux",
         "description": p["desc"],
@@ -318,7 +338,7 @@ def service_page(p: dict) -> str:
 {caveat}
 
 <h2>Установка</h2>
-<pre><code>uvx --from business-mcp-ru {p["entry"]}</code></pre>
+<pre><code>uvx {p["repo"]}</code></pre>
 <p>Переменные окружения: <code>{esc(p["env"])}</code>. Ключи можно не держать в
 окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
 локальный файл с правами 600.</p>
@@ -349,7 +369,8 @@ def service_page(p: dict) -> str:
 {svc}_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
 
 <footer>
-<p>Исходный код и установка: <a href="{REPO}">{REPO}</a>. Лицензия MIT.
+<p>Исходный код: <a href="https://github.com/ilyautov/{p["repo"]}">github.com/ilyautov/{p["repo"]}</a>.
+Соседние серверы и общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT.
 Обновлено {TODAY}.</p>
 </footer>
 </div>
@@ -407,7 +428,7 @@ def index_page() -> str:
 <h1>MCP-серверы для российских деловых сервисов</h1>
 <p class="lead">{esc(desc)}</p>
 
-<pre><code>uvx --from business-mcp-ru hh-mcp</code></pre>
+<pre><code>uvx hh-mcp-ru</code></pre>
 
 <h2>Пять сервисов</h2>
 <div class="cards">

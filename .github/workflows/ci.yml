@@ -9,32 +9,24 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v5
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
+      - uses: actions/setup-python@v6
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install
-        run: |
-          python -m pip install --upgrade pip
-          pip install -e ".[dev]"
-      - name: Tests
-        run: python -m pytest tests/ -q
-      - name: Страницы сайта совпадают с каталогами
+          python-version: "3.12"
+      # Каталоги живут в репозиториях серверов: страницы собираются из них,
+      # поэтому для сборки сайта их надо положить рядом.
+      - uses: actions/checkout@v5
+        with: { repository: ilyautov/hh-mcp-ru, path: ../hh-mcp-ru }
+      - uses: actions/checkout@v5
+        with: { repository: ilyautov/vk-mcp-ru, path: ../vk-mcp-ru }
+      - uses: actions/checkout@v5
+        with: { repository: ilyautov/diadoc-mcp-ru, path: ../diadoc-mcp-ru }
+      - uses: actions/checkout@v5
+        with: { repository: ilyautov/sbis-mcp-ru, path: ../sbis-mcp-ru }
+      - uses: actions/checkout@v5
+        with: { repository: ilyautov/chestny-znak-mcp-ru, path: ../chestny-znak-mcp-ru }
+      - run: pip install pytest "pyyaml>=6.0,<7"
+      - run: python -m pytest tests/ -q
+      - name: Страницы совпадают с каталогами
         run: python scripts/build_pages.py --check
-      - name: Каждый сервер поднимается и отдаёт инструменты
-        run: |
-          for s in hh vk diadoc sbis crpt; do
-            python -c "
-import asyncio, importlib
-m = importlib.import_module(f'${s}_mcp.server')
-tools = asyncio.run(m.mcp.list_tools())
-assert tools, 'нет инструментов'
-print(f'${s}: {len(tools)} инструментов')
-"
-          done

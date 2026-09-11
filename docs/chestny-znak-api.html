@@ -34,7 +34,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "crpt-mcp (API Честного знака (ГИС МТ) в ИИ-ассистенте)", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах маркировки, выгрузка по фильтру, маршрут товара по GTIN, заказы на эмиссию кодов, отчёты о нанесении, проверка подлинности.", "url": "https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "chestny-znak-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах маркировки, выгрузка по фильтру, маршрут товара по GTIN, заказы на эмиссию кодов, отчёты о нанесении, проверка подлинности.", "url": "https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
 </head>
 <body>
 
@@ -53,7 +53,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <p class="note">Документация ЦРПТ открывается только после входа по КЭП, публичной спеки нет: <code>/api/v3/true-api/swagger.json</code> отдаёт 401. Поэтому пути здесь взяты из открытых SDK и у каждой записи каталога стоит <code>verified: false</code>. Это карта для разведки: пути надёжные, глаголы и параметры нужно подтвердить на живом контуре. Сервер показывает этот статус в describe_method, чтобы агент не выдавал догадку за факт.</p>
 
 <h2>Установка</h2>
-<pre><code>uvx --from business-mcp-ru crpt-mcp</code></pre>
+<pre><code>uvx chestny-znak-mcp-ru</code></pre>
 <p>Переменные окружения: <code>CRPT_TOKEN</code>. Ключи можно не держать в
 окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
 локальный файл с правами 600.</p>
@@ -95,7 +95,8 @@ crpt_describe_method(...)   параметры, пагинация, класс �
 crpt_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
 
 <footer>
-<p>Исходный код и установка: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT.
+<p>Исходный код: <a href="https://github.com/ilyautov/chestny-znak-mcp-ru">github.com/ilyautov/chestny-znak-mcp-ru</a>.
+Соседние серверы и общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT.
 Обновлено 2026-09-11.</p>
 </footer>
 </div>

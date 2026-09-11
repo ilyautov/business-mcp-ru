@@ -34,7 +34,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "hh-mcp (API hh.ru в ИИ-ассистенте)", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API hh.ru: 133 метода официальной спеки. Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат. Установка одной командой, ключ из dev.hh.ru.", "url": "https://business-mcp-ru.aifrontier.tech/hh-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "hh-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API hh.ru: 133 метода официальной спеки. Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат. Установка одной командой, ключ из dev.hh.ru.", "url": "https://business-mcp-ru.aifrontier.tech/hh-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
 </head>
 <body>
 
@@ -53,7 +53,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 
 
 <h2>Установка</h2>
-<pre><code>uvx --from business-mcp-ru hh-mcp</code></pre>
+<pre><code>uvx hh-mcp-ru</code></pre>
 <p>Переменные окружения: <code>HH_TOKEN, HH_APP_NAME</code>. Ключи можно не держать в
 окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
 локальный файл с правами 600.</p>
@@ -70,7 +70,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <tbody>
 <tr><td>Работодатель и менеджеры</td><td class=num>30</td><td class=num>23</td><td class=num>5</td><td class=num>2</td></tr>
 <tr><td>Вакансии</td><td class=num>21</td><td class=num>12</td><td class=num>7</td><td class=num>2</td></tr>
-<tr><td>Общие справочники</td><td class=num>14</td><td class=num>7</td><td class=num>6</td><td class=num>1</td></tr>
+<tr><td>Общие справочники</td><td class=num>14</td><td class=num>6</td><td class=num>7</td><td class=num>1</td></tr>
 <tr><td>Подсказки</td><td class=num>11</td><td class=num>11</td><td class=num>0</td><td class=num>0</td></tr>
 <tr><td>Отклики и приглашения</td><td class=num>10</td><td class=num>5</td><td class=num>5</td><td class=num>0</td></tr>
 <tr><td>Сохранённые поиски</td><td class=num>6</td><td class=num>2</td><td class=num>3</td><td class=num>1</td></tr>
@@ -95,8 +95,8 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <tr><td>Районы</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
 <tr><td>Шаблоны сообщений</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
 <tr><td>Условия публикации вакансий</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
-<tr><td><b>Всего</b></td><td class=num><b>133</b></td><td class=num><b>93</b></td>
-<td class=num><b>31</b></td><td class=num><b>9</b></td></tr>
+<tr><td><b>Всего</b></td><td class=num><b>133</b></td><td class=num><b>92</b></td>
+<td class=num><b>32</b></td><td class=num><b>9</b></td></tr>
 </tbody></table></div>
 
 <h2>Что обычно просят</h2>
@@ -113,7 +113,8 @@ hh_describe_method(...)   параметры, пагинация, класс д�
 hh_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
 
 <footer>
-<p>Исходный код и установка: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT.
+<p>Исходный код: <a href="https://github.com/ilyautov/hh-mcp-ru">github.com/ilyautov/hh-mcp-ru</a>.
+Соседние серверы и общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT.
 Обновлено 2026-09-11.</p>
 </footer>
 </div>
