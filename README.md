@@ -10,6 +10,12 @@
 [![Сайт](https://img.shields.io/badge/%D1%81%D0%B0%D0%B9%D1%82-business--mcp--ru-9A3E1A)](https://business-mcp-ru.aifrontier.tech/)
 [![Звёзды](https://img.shields.io/github/stars/ilyautov/business-mcp-ru?style=flat&label=%D0%B7%D0%B2%D1%91%D0%B7%D0%B4%D1%8B&color=B5491F&logo=github&logoColor=white)](https://github.com/ilyautov/business-mcp-ru/stargazers)
 
+<p align="center">
+  <a href="https://business-mcp-ru.aifrontier.tech/">
+    <img src="assets/social-preview.png" alt="business-mcp-ru: российские деловые сервисы в ИИ-ассистенте. 698 методов в пяти серверах, общее ядро, гейт безопасности перед записью" width="760">
+  </a>
+</p>
+
 | репозиторий | сервис | методов | спрос/мес | страница |
 |---|---|---|---|---|
 | [chestny-znak-mcp-ru](https://github.com/ilyautov/chestny-znak-mcp-ru) | API Честного знака (ГИС МТ) | 33 | 1 976 | [chestny-znak-api](https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html) |
