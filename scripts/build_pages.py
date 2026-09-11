@@ -32,6 +32,7 @@ DOCS = ROOT / "docs"
 # рабочей папки), иначе рядом с зонтиком, иначе берём из установленного пакета.
 NEIGHBOURS = Path(os.environ.get("MCP_NEIGHBOURS_DIR") or ROOT.parent)
 SITE = "https://business-mcp-ru.aifrontier.tech"
+DOMAIN = SITE.split("//", 1)[1]
 REPO = "https://github.com/ilyautov/business-mcp-ru"
 TODAY = date.today().isoformat()
 DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
@@ -473,7 +474,10 @@ def main() -> None:
     a = ap.parse_args()
 
     DOCS.mkdir(exist_ok=True)
-    files = {"index.html": index_page(), "sitemap.xml": sitemap(), "robots.txt": robots()}
+    # CNAME рождается из SITE, а не пишется руками: иначе поддомен и sitemap
+    # однажды разъедутся, и Pages начнёт отдавать 404 на адрес из бейджей.
+    files = {"index.html": index_page(), "sitemap.xml": sitemap(),
+             "robots.txt": robots(), "CNAME": DOMAIN + "\n"}
     for p in PAGES:
         files[p["file"]] = service_page(p)
 
