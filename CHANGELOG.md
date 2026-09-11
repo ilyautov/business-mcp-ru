@@ -7,7 +7,7 @@
 
 - пять серверов разъехались по своим репозиториям: [hh-mcp-ru], [vk-mcp-ru],
   [diadoc-mcp-ru], [sbis-mcp-ru], [chestny-znak-mcp-ru];
-- ядро вынесено в пакет [ru-mcp-core], серверы делят его, а не копируют;
+- ядро вынесено в пакет [schema-mcp-core], серверы делят его, а не копируют;
 - страницы `docs/` собираются из каталогов соседних репозиториев, режим
   `--check` в CI падает при расхождении.
 
@@ -16,4 +16,4 @@
 [diadoc-mcp-ru]: https://github.com/ilyautov/diadoc-mcp-ru
 [sbis-mcp-ru]: https://github.com/ilyautov/sbis-mcp-ru
 [chestny-znak-mcp-ru]: https://github.com/ilyautov/chestny-znak-mcp-ru
-[ru-mcp-core]: https://github.com/ilyautov/ru-mcp-core
+[schema-mcp-core]: https://github.com/ilyautov/schema-mcp-core

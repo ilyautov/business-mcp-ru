@@ -32,7 +32,7 @@ pip install business-mcp-ru
 ## Как устроено
 
 Сервер это каталог методов (`endpoints.yaml`) плюс тонкий `server.py` на 66
-строк. Всё остальное в общем ядре [ru-mcp-core](https://github.com/ilyautov/ru-mcp-core):
+строк. Всё остальное в общем ядре [schema-mcp-core](https://github.com/ilyautov/schema-mcp-core):
 HTTP-клиент с авторизацией и повтором на 429, классы доступа, хранилище ключей,
 `doctor`. Поэтому правка безопасности чинит сразу пять серверов, а не один.
 
