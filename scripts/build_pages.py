@@ -691,7 +691,8 @@ def index_page() -> str:
         ("Где серверы для маркетплейсов?",
          f"Wildberries, Ozon, Яндекс Маркет и Авито живут отдельным набором на "
          f"marketplaces-mcp-ru.aifrontier.tech, там ещё {methods(mp)}. Устроены так же, "
-         "каталогом и тремя инструментами."),
+         "каталогом и тремя инструментами. По одному маркетплейсу ставятся отдельные "
+         "пакеты: ozon-mcp-ru, wildberries-mcp-ru, yandex-market-mcp-ru, avito-mcp-ru."),
         ("С какими клиентами это работает?",
          "С любым, который умеет MCP по stdio: Claude Desktop, Claude Code, Cursor, "
          "VS Code, Codex. Настройка это одна команда и переменные окружения."),
