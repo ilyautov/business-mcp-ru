@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="MCP-серверы для российских деловых сервисов: hh.ru, VK, Диадок, СБИС и Честный знак. 698 методов в каталоге, у каждого описание и класс доступа. Установка одной командой." />
+<link rel="canonical" href="https://business-mcp-ru.aifrontier.tech/" />
+<meta property="og:title" content="MCP для российского бизнеса: hh.ru, VK, Диадок, СБИС, Честный знак" />
+<meta property="og:description" content="MCP-серверы для российских деловых сервисов: hh.ru, VK, Диадок, СБИС и Честный знак. 698 методов в каталоге, у каждого описание и класс доступа. Установка одной командой." />
+<meta property="og:url" content="https://business-mcp-ru.aifrontier.tech/" />
+<meta property="og:type" content="website" />
+<title>MCP для российского бизнеса: hh.ru, VK, Диадок, СБИС, Честный знак</title>
+<style>:root{--bg:#fff;--fg:#16181d;--muted:#5b6472;--line:#e5e8ee;--accent:#2f6feb;--code:#f6f7f9}
+@media (prefers-color-scheme:dark){:root{--bg:#12141a;--fg:#e8eaee;--muted:#9aa3b2;--line:#272b35;--accent:#6f9cff;--code:#1a1d25}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:32px 20px 64px}
+header nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-bottom:28px}
+a{color:var(--accent)}h1{font-size:30px;line-height:1.25;margin:.2em 0 .4em}
+h2{font-size:21px;margin:2em 0 .6em}h3{font-size:17px;margin:1.4em 0 .4em}
+.lead{font-size:18px;color:var(--muted)}
+code{background:var(--code);padding:2px 5px;border-radius:4px;font-size:.9em}
+pre{background:var(--code);padding:14px 16px;border-radius:8px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tw{overflow-x:auto;margin:1em 0}table{min-width:520px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:1em 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card h3{margin:0 0 .3em;font-size:16px}.card p{margin:0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--muted)}
+.crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Чем это отличается от обёртки над OpenAPI?", "acceptedAnswer": {"@type": "Answer", "text": "Обёртка отдаёт агенту сотни функций и надеется, что он разберётся. Здесь методы лежат каталогом: поиск словами, у каждого метода описание, пагинация и класс доступа. Перед записью агент обязан спросить."}}, {"@type": "Question", "name": "Ключи уходят куда-то на сервер?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Сервер работает на машине пользователя, ключи лежат локально с правами 600. У каждого сервера список разрешённых доменов, и заголовок авторизации не покидает домен сервиса даже при вызове произвольного пути."}}, {"@type": "Question", "name": "Почему у Честного знака методы помечены непроверенными?", "acceptedAnswer": {"@type": "Answer", "text": "Документация ЦРПТ открывается только после входа по КЭП, публичной спеки нет. Пути взяты из открытых SDK, и сервер честно показывает этот статус, вместо того чтобы выдавать догадку за факт."}}, {"@type": "Question", "name": "Нужен ли программист, чтобы это поставить?", "acceptedAnswer": {"@type": "Answer", "text": "Нужна одна команда и ключ сервиса. Сложность не в установке, а в получении доступа: у hh и VK ключ выдаётся сразу, у Диадока нужна лицензия, у Честного знака электронная подпись."}}]}</script>
+</head>
+<body>
+
+<div class="wrap">
+<header><nav>
+  <a href="/">business-mcp-ru</a>
+  <a href="/hh-api.html">API hh.ru</a>
+  <a href="/vk-api.html">VK API</a>
+  <a href="/diadoc-api.html">API Диадока (Контур)</a>
+  <a href="/sbis-api.html">API СБИС (Saby)</a>
+  <a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a>
+</nav></header>
+<h1>MCP-серверы для российских деловых сервисов</h1>
+<p class="lead">MCP-серверы для российских деловых сервисов: hh.ru, VK, Диадок, СБИС и Честный знак. 698 методов в каталоге, у каждого описание и класс доступа. Установка одной командой.</p>
+
+<pre><code>uvx --from business-mcp-ru hh-mcp</code></pre>
+
+<h2>Пять сервисов</h2>
+<div class="cards">
+<div class="card"><h3><a href="/hh-api.html">API hh.ru</a></h3><p>133 метода. Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат.</p></div>
+<div class="card"><h3><a href="/vk-api.html">VK API</a></h3><p>373 метода. Товары магазина сообщества, посты, реклама и статистика, диалоги, лид-формы.</p></div>
+<div class="card"><h3><a href="/diadoc-api.html">API Диадока (Контур)</a></h3><p>114 методов. Входящие и исходящие документы, статусы ЭДО, контрагенты, подписание, МЧД.</p></div>
+<div class="card"><h3><a href="/sbis-api.html">API СБИС (Saby)</a></h3><p>45 методов. Документы и этапы, подписание вложений, сертификаты, сотрудники, контрагенты.</p></div>
+<div class="card"><h3><a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a></h3><p>33 метода. Коды маркировки, заказы на эмиссию в СУЗ, маршрут товара по GTIN, отчёты.</p></div>
+</div>
+
+<h2>Частые вопросы</h2>
+<h3>Чем это отличается от обёртки над OpenAPI?</h3><p>Обёртка отдаёт агенту сотни функций и надеется, что он разберётся. Здесь методы лежат каталогом: поиск словами, у каждого метода описание, пагинация и класс доступа. Перед записью агент обязан спросить.</p>
+<h3>Ключи уходят куда-то на сервер?</h3><p>Нет. Сервер работает на машине пользователя, ключи лежат локально с правами 600. У каждого сервера список разрешённых доменов, и заголовок авторизации не покидает домен сервиса даже при вызове произвольного пути.</p>
+<h3>Почему у Честного знака методы помечены непроверенными?</h3><p>Документация ЦРПТ открывается только после входа по КЭП, публичной спеки нет. Пути взяты из открытых SDK, и сервер честно показывает этот статус, вместо того чтобы выдавать догадку за факт.</p>
+<h3>Нужен ли программист, чтобы это поставить?</h3><p>Нужна одна команда и ключ сервиса. Сложность не в установке, а в получении доступа: у hh и VK ключ выдаётся сразу, у Диадока нужна лицензия, у Честного знака электронная подпись.</p>
+
+<footer>
+<p>Исходный код: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT. Обновлено 2026-09-11.</p>
+<p>Маркетплейсы (Wildberries, Ozon, Яндекс Маркет, Авито) живут отдельно:
+<a href="https://marketplaces-mcp-ru.aifrontier.tech/">marketplaces-mcp-ru</a>.</p>
+</footer>
+</div>
+</body>
+</html>

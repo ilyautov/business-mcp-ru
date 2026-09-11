@@ -54,3 +54,20 @@ def test_skills_frontmatter_is_valid():
             f"{skill.name}: лишние поля {set(front) - {'name', 'description'}}"
         assert front["name"] == skill.name, f"{skill.name}: имя во фронтматтере другое"
         assert len(front["description"]) <= 1024, f"{skill.name}: описание длиннее 1024"
+
+
+def test_pages_exist_and_are_listed_in_sitemap():
+    """Страница без ссылки в sitemap для поиска не существует."""
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "build_pages", ROOT / "scripts" / "build_pages.py"
+    )
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    sitemap = (ROOT / "docs" / "sitemap.xml").read_text(encoding="utf-8")
+    for page in mod.PAGES:
+        assert (ROOT / "docs" / page["file"]).exists(), page["file"]
+        assert page["file"] in sitemap, f'{page["file"]} нет в sitemap.xml'
+    assert len(mod.PAGES) == 5

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="MCP-сервер для VK API: 373 метода по бизнес-разделам. Товары магазина сообщества, посты, рекламные кампании и статистика, диалоги с клиентами, лид-формы." />
+<link rel="canonical" href="https://business-mcp-ru.aifrontier.tech/vk-api.html" />
+<meta property="og:title" content="VK API в ИИ-ассистенте: товары, сообщества, реклама | business-mcp-ru" />
+<meta property="og:description" content="MCP-сервер для VK API: 373 метода по бизнес-разделам. Товары магазина сообщества, посты, рекламные кампании и статистика, диалоги с клиентами, лид-формы." />
+<meta property="og:url" content="https://business-mcp-ru.aifrontier.tech/vk-api.html" />
+<meta property="og:type" content="website" />
+<title>VK API в ИИ-ассистенте: товары, сообщества, реклама | business-mcp-ru</title>
+<style>:root{--bg:#fff;--fg:#16181d;--muted:#5b6472;--line:#e5e8ee;--accent:#2f6feb;--code:#f6f7f9}
+@media (prefers-color-scheme:dark){:root{--bg:#12141a;--fg:#e8eaee;--muted:#9aa3b2;--line:#272b35;--accent:#6f9cff;--code:#1a1d25}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:32px 20px 64px}
+header nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-bottom:28px}
+a{color:var(--accent)}h1{font-size:30px;line-height:1.25;margin:.2em 0 .4em}
+h2{font-size:21px;margin:2em 0 .6em}h3{font-size:17px;margin:1.4em 0 .4em}
+.lead{font-size:18px;color:var(--muted)}
+code{background:var(--code);padding:2px 5px;border-radius:4px;font-size:.9em}
+pre{background:var(--code);padding:14px 16px;border-radius:8px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tw{overflow-x:auto;margin:1em 0}table{min-width:520px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:1em 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card h3{margin:0 0 .3em;font-size:16px}.card p{margin:0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--muted)}
+.crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "vk-mcp (VK API в ИИ-ассистенте)", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для VK API: 373 метода по бизнес-разделам. Товары магазина сообщества, посты, рекламные кампании и статистика, диалоги с клиентами, лид-формы.", "url": "https://business-mcp-ru.aifrontier.tech/vk-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+</head>
+<body>
+
+<div class="wrap">
+<header><nav>
+  <a href="/">business-mcp-ru</a>
+  <a href="/hh-api.html">API hh.ru</a>
+  <a href="/vk-api.html">VK API</a>
+  <a href="/diadoc-api.html">API Диадока (Контур)</a>
+  <a href="/sbis-api.html">API СБИС (Saby)</a>
+  <a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a>
+</nav></header>
+<p class="crumbs"><a href="/">business-mcp-ru</a> → VK API в ИИ-ассистенте</p>
+<h1>VK API в ИИ-ассистенте</h1>
+<p class="lead">MCP-сервер для VK API: 373 метода по бизнес-разделам. Товары магазина сообщества, посты, рекламные кампании и статистика, диалоги с клиентами, лид-формы.</p>
+
+
+<h2>Установка</h2>
+<pre><code>uvx --from business-mcp-ru vk-mcp</code></pre>
+<p>Переменные окружения: <code>VK_TOKEN</code>. Ключи можно не держать в
+окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
+локальный файл с правами 600.</p>
+
+<h2>Где взять ключ</h2>
+<p>dev.vk.com → приложение → сервисный ключ доступа, либо токен сообщества с правами market, messages, ads, stats. Запрашивайте только те права, которые реально нужны.</p>
+
+<h2>Карта методов: 373 метода</h2>
+<p>Таблица собрана из того же каталога, который сервер исполняет в рантайме
+(источник: официальная схема <code>VKCOM/vk-api-schema</code>). Класс доступа определяет поведение: чтение идёт сразу,
+запись и необратимые действия требуют подтверждения.</p>
+<div class="tw"><table>
+<thead><tr><th>Раздел</th><th>Методов</th><th>Чтение</th><th>Запись</th><th>Необратимое</th></tr></thead>
+<tbody>
+<tr><td>Сообщества</td><td class=num>51</td><td class=num>20</td><td class=num>25</td><td class=num>6</td></tr>
+<tr><td>Диалоги</td><td class=num>48</td><td class=num>21</td><td class=num>22</td><td class=num>5</td></tr>
+<tr><td>Реклама</td><td class=num>47</td><td class=num>24</td><td class=num>16</td><td class=num>7</td></tr>
+<tr><td>Товары и магазин</td><td class=num>45</td><td class=num>16</td><td class=num>23</td><td class=num>6</td></tr>
+<tr><td>Фотографии</td><td class=num>44</td><td class=num>18</td><td class=num>22</td><td class=num>4</td></tr>
+<tr><td>Видео</td><td class=num>34</td><td class=num>9</td><td class=num>20</td><td class=num>5</td></tr>
+<tr><td>Записи на стене</td><td class=num>25</td><td class=num>7</td><td class=num>16</td><td class=num>2</td></tr>
+<tr><td>Обсуждения</td><td class=num>13</td><td class=num>2</td><td class=num>9</td><td class=num>2</td></tr>
+<tr><td>Документы</td><td class=num>12</td><td class=num>7</td><td class=num>4</td><td class=num>1</td></tr>
+<tr><td>Вики-страницы</td><td class=num>8</td><td class=num>4</td><td class=num>4</td><td class=num>0</td></tr>
+<tr><td>Лид-формы</td><td class=num>7</td><td class=num>3</td><td class=num>3</td><td class=num>1</td></tr>
+<tr><td>Заказы</td><td class=num>7</td><td class=num>5</td><td class=num>2</td><td class=num>0</td></tr>
+<tr><td>Утилиты</td><td class=num>7</td><td class=num>6</td><td class=num>0</td><td class=num>1</td></tr>
+<tr><td>Карточки в записях</td><td class=num>6</td><td class=num>3</td><td class=num>2</td><td class=num>1</td></tr>
+<tr><td>Пользователи</td><td class=num>5</td><td class=num>4</td><td class=num>1</td><td class=num>0</td></tr>
+<tr><td>VK Donut</td><td class=num>4</td><td class=num>4</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Статистика</td><td class=num>3</td><td class=num>2</td><td class=num>1</td><td class=num>0</td></tr>
+<tr><td>Хранилище приложения</td><td class=num>3</td><td class=num>2</td><td class=num>1</td><td class=num>0</td></tr>
+<tr><td>Уведомления</td><td class=num>3</td><td class=num>1</td><td class=num>2</td><td class=num>0</td></tr>
+<tr><td>Подкасты</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td><b>Всего</b></td><td class=num><b>373</b></td><td class=num><b>159</b></td>
+<td class=num><b>173</b></td><td class=num><b>41</b></td></tr>
+</tbody></table></div>
+
+<h2>Что обычно просят</h2>
+<ul>
+<li>Свести заказы и товары магазина сообщества в таблицу.</li>
+<li>Посмотреть статистику сообщества и постов за период.</li>
+<li>Собрать расходы и показатели рекламных кампаний VK Ads.</li>
+<li>Разобрать непрочитанные диалоги и подготовить ответы на согласование.</li>
+</ul>
+
+<h2>Как это работает в чате</h2>
+<pre><code>vk_search_methods("...")   поиск метода словами, а не по имени эндпоинта
+vk_describe_method(...)   параметры, пагинация, класс доступа
+vk_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
+
+<footer>
+<p>Исходный код и установка: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT.
+Обновлено 2026-09-11.</p>
+</footer>
+</div>
+</body>
+</html>

@@ -25,6 +25,8 @@ jobs:
           pip install -e ".[dev]"
       - name: Tests
         run: python -m pytest tests/ -q
+      - name: Страницы сайта совпадают с каталогами
+        run: python scripts/build_pages.py --check
       - name: Каждый сервер поднимается и отдаёт инструменты
         run: |
           for s in hh vk diadoc sbis crpt; do

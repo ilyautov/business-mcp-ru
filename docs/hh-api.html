@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="MCP-сервер для API hh.ru: 133 метода официальной спеки. Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат. Установка одной командой, ключ из dev.hh.ru." />
+<link rel="canonical" href="https://business-mcp-ru.aifrontier.tech/hh-api.html" />
+<meta property="og:title" content="API hh.ru в ИИ-ассистенте: вакансии, отклики, резюме | business-mcp-ru" />
+<meta property="og:description" content="MCP-сервер для API hh.ru: 133 метода официальной спеки. Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат. Установка одной командой, ключ из dev.hh.ru." />
+<meta property="og:url" content="https://business-mcp-ru.aifrontier.tech/hh-api.html" />
+<meta property="og:type" content="website" />
+<title>API hh.ru в ИИ-ассистенте: вакансии, отклики, резюме | business-mcp-ru</title>
+<style>:root{--bg:#fff;--fg:#16181d;--muted:#5b6472;--line:#e5e8ee;--accent:#2f6feb;--code:#f6f7f9}
+@media (prefers-color-scheme:dark){:root{--bg:#12141a;--fg:#e8eaee;--muted:#9aa3b2;--line:#272b35;--accent:#6f9cff;--code:#1a1d25}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:32px 20px 64px}
+header nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-bottom:28px}
+a{color:var(--accent)}h1{font-size:30px;line-height:1.25;margin:.2em 0 .4em}
+h2{font-size:21px;margin:2em 0 .6em}h3{font-size:17px;margin:1.4em 0 .4em}
+.lead{font-size:18px;color:var(--muted)}
+code{background:var(--code);padding:2px 5px;border-radius:4px;font-size:.9em}
+pre{background:var(--code);padding:14px 16px;border-radius:8px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tw{overflow-x:auto;margin:1em 0}table{min-width:520px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:1em 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card h3{margin:0 0 .3em;font-size:16px}.card p{margin:0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--muted)}
+.crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "hh-mcp (API hh.ru в ИИ-ассистенте)", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для API hh.ru: 133 метода официальной спеки. Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат. Установка одной командой, ключ из dev.hh.ru.", "url": "https://business-mcp-ru.aifrontier.tech/hh-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+</head>
+<body>
+
+<div class="wrap">
+<header><nav>
+  <a href="/">business-mcp-ru</a>
+  <a href="/hh-api.html">API hh.ru</a>
+  <a href="/vk-api.html">VK API</a>
+  <a href="/diadoc-api.html">API Диадока (Контур)</a>
+  <a href="/sbis-api.html">API СБИС (Saby)</a>
+  <a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a>
+</nav></header>
+<p class="crumbs"><a href="/">business-mcp-ru</a> → API hh.ru в ИИ-ассистенте</p>
+<h1>API hh.ru в ИИ-ассистенте</h1>
+<p class="lead">MCP-сервер для API hh.ru: 133 метода официальной спеки. Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат. Установка одной командой, ключ из dev.hh.ru.</p>
+
+
+<h2>Установка</h2>
+<pre><code>uvx --from business-mcp-ru hh-mcp</code></pre>
+<p>Переменные окружения: <code>HH_TOKEN, HH_APP_NAME</code>. Ключи можно не держать в
+окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
+локальный файл с правами 600.</p>
+
+<h2>Где взять ключ</h2>
+<p>dev.hh.ru → Мои приложения → создать приложение → access token. HH_APP_NAME заполняется обязательно: hh отклоняет запросы без внятного User-Agent, и это первая причина непонятных ошибок 400.</p>
+
+<h2>Карта методов: 133 метода</h2>
+<p>Таблица собрана из того же каталога, который сервер исполняет в рантайме
+(источник: официальная спека <code>api.hh.ru/openapi/specification/public</code>). Класс доступа определяет поведение: чтение идёт сразу,
+запись и необратимые действия требуют подтверждения.</p>
+<div class="tw"><table>
+<thead><tr><th>Раздел</th><th>Методов</th><th>Чтение</th><th>Запись</th><th>Необратимое</th></tr></thead>
+<tbody>
+<tr><td>Работодатель и менеджеры</td><td class=num>30</td><td class=num>23</td><td class=num>5</td><td class=num>2</td></tr>
+<tr><td>Вакансии</td><td class=num>21</td><td class=num>12</td><td class=num>7</td><td class=num>2</td></tr>
+<tr><td>Общие справочники</td><td class=num>14</td><td class=num>7</td><td class=num>6</td><td class=num>1</td></tr>
+<tr><td>Подсказки</td><td class=num>11</td><td class=num>11</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Отклики и приглашения</td><td class=num>10</td><td class=num>5</td><td class=num>5</td><td class=num>0</td></tr>
+<tr><td>Сохранённые поиски</td><td class=num>6</td><td class=num>2</td><td class=num>3</td><td class=num>1</td></tr>
+<tr><td>Статистика зарплат</td><td class=num>5</td><td class=num>5</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Вебхуки</td><td class=num>4</td><td class=num>1</td><td class=num>2</td><td class=num>1</td></tr>
+<tr><td>Комментарии к соискателю</td><td class=num>4</td><td class=num>1</td><td class=num>2</td><td class=num>1</td></tr>
+<tr><td>Резюме</td><td class=num>3</td><td class=num>3</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Звонки</td><td class=num>3</td><td class=num>3</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Регионы</td><td class=num>3</td><td class=num>3</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Токены</td><td class=num>2</td><td class=num>0</td><td class=num>1</td><td class=num>1</td></tr>
+<tr><td>Учебные заведения</td><td class=num>2</td><td class=num>2</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Локали</td><td class=num>2</td><td class=num>2</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Метро</td><td class=num>2</td><td class=num>2</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Текущий пользователь</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Аккаунты менеджеров</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Отрасли</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Словари</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Профессиональные роли</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Языки</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Навыки</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Clickme</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Районы</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Шаблоны сообщений</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Условия публикации вакансий</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td><b>Всего</b></td><td class=num><b>133</b></td><td class=num><b>93</b></td>
+<td class=num><b>31</b></td><td class=num><b>9</b></td></tr>
+</tbody></table></div>
+
+<h2>Что обычно просят</h2>
+<ul>
+<li>Выгрузить свои вакансии и отклики за период и свести в таблицу.</li>
+<li>Посмотреть статистику зарплат по роли перед публикацией вакансии.</li>
+<li>Найти вакансии конкурентов по региону и профессиональной роли.</li>
+<li>Ответить кандидатам шаблоном, показав список человеку до отправки.</li>
+</ul>
+
+<h2>Как это работает в чате</h2>
+<pre><code>hh_search_methods("...")   поиск метода словами, а не по имени эндпоинта
+hh_describe_method(...)   параметры, пагинация, класс доступа
+hh_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
+
+<footer>
+<p>Исходный код и установка: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT.
+Обновлено 2026-09-11.</p>
+</footer>
+</div>
+</body>
+</html>

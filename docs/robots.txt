@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://business-mcp-ru.aifrontier.tech/sitemap.xml

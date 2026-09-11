@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах маркировки, выгрузка по фильтру, маршрут товара по GTIN, заказы на эмиссию кодов, отчёты о нанесении, проверка подлинности." />
+<link rel="canonical" href="https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html" />
+<meta property="og:title" content="API Честного знака в ИИ-ассистенте: коды маркировки и СУЗ | business-mcp-ru" />
+<meta property="og:description" content="MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах маркировки, выгрузка по фильтру, маршрут товара по GTIN, заказы на эмиссию кодов, отчёты о нанесении, проверка подлинности." />
+<meta property="og:url" content="https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html" />
+<meta property="og:type" content="website" />
+<title>API Честного знака в ИИ-ассистенте: коды маркировки и СУЗ | business-mcp-ru</title>
+<style>:root{--bg:#fff;--fg:#16181d;--muted:#5b6472;--line:#e5e8ee;--accent:#2f6feb;--code:#f6f7f9}
+@media (prefers-color-scheme:dark){:root{--bg:#12141a;--fg:#e8eaee;--muted:#9aa3b2;--line:#272b35;--accent:#6f9cff;--code:#1a1d25}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:32px 20px 64px}
+header nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-bottom:28px}
+a{color:var(--accent)}h1{font-size:30px;line-height:1.25;margin:.2em 0 .4em}
+h2{font-size:21px;margin:2em 0 .6em}h3{font-size:17px;margin:1.4em 0 .4em}
+.lead{font-size:18px;color:var(--muted)}
+code{background:var(--code);padding:2px 5px;border-radius:4px;font-size:.9em}
+pre{background:var(--code);padding:14px 16px;border-radius:8px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tw{overflow-x:auto;margin:1em 0}table{min-width:520px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:1em 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card h3{margin:0 0 .3em;font-size:16px}.card p{margin:0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--muted)}
+.crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "crpt-mcp (API Честного знака (ГИС МТ) в ИИ-ассистенте)", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах маркировки, выгрузка по фильтру, маршрут товара по GTIN, заказы на эмиссию кодов, отчёты о нанесении, проверка подлинности.", "url": "https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0"}</script>
+</head>
+<body>
+
+<div class="wrap">
+<header><nav>
+  <a href="/">business-mcp-ru</a>
+  <a href="/hh-api.html">API hh.ru</a>
+  <a href="/vk-api.html">VK API</a>
+  <a href="/diadoc-api.html">API Диадока (Контур)</a>
+  <a href="/sbis-api.html">API СБИС (Saby)</a>
+  <a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a>
+</nav></header>
+<p class="crumbs"><a href="/">business-mcp-ru</a> → API Честного знака (ГИС МТ) в ИИ-ассистенте</p>
+<h1>API Честного знака (ГИС МТ) в ИИ-ассистенте</h1>
+<p class="lead">MCP-сервер для ГИС МТ и СУЗ: 33 метода. Сведения о кодах маркировки, выгрузка по фильтру, маршрут товара по GTIN, заказы на эмиссию кодов, отчёты о нанесении, проверка подлинности.</p>
+<p class="note">Документация ЦРПТ открывается только после входа по КЭП, публичной спеки нет: <code>/api/v3/true-api/swagger.json</code> отдаёт 401. Поэтому пути здесь взяты из открытых SDK и у каждой записи каталога стоит <code>verified: false</code>. Это карта для разведки: пути надёжные, глаголы и параметры нужно подтвердить на живом контуре. Сервер показывает этот статус в describe_method, чтобы агент не выдавал догадку за факт.</p>
+
+<h2>Установка</h2>
+<pre><code>uvx --from business-mcp-ru crpt-mcp</code></pre>
+<p>Переменные окружения: <code>CRPT_TOKEN</code>. Ключи можно не держать в
+окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
+локальный файл с правами 600.</p>
+
+<h2>Где взять ключ</h2>
+<p>GET /api/v3/true-api/auth/key отдаёт случайные данные, их подписывают КЭП через КриптоПро на машине пользователя, а POST /api/v3/true-api/auth/simpleSignIn меняет подпись на токен. Токен живёт около 10 часов. Закрытый ключ в сервер не попадает.</p>
+
+<h2>Карта методов: 33 метода</h2>
+<p>Таблица собрана из того же каталога, который сервер исполняет в рантайме
+(источник: открытые SDK True API и СУЗ). Класс доступа определяет поведение: чтение идёт сразу,
+запись и необратимые действия требуют подтверждения.</p>
+<div class="tw"><table>
+<thead><tr><th>Раздел</th><th>Методов</th><th>Чтение</th><th>Запись</th><th>Необратимое</th></tr></thead>
+<tbody>
+<tr><td>Проверка кодов</td><td class=num>8</td><td class=num>7</td><td class=num>1</td><td class=num>0</td></tr>
+<tr><td>Коды маркировки</td><td class=num>6</td><td class=num>5</td><td class=num>1</td><td class=num>0</td></tr>
+<tr><td>Заказы на эмиссию</td><td class=num>5</td><td class=num>3</td><td class=num>2</td><td class=num>0</td></tr>
+<tr><td>Служебные</td><td class=num>4</td><td class=num>4</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Чеки</td><td class=num>3</td><td class=num>1</td><td class=num>2</td><td class=num>0</td></tr>
+<tr><td>Авторизация</td><td class=num>2</td><td class=num>1</td><td class=num>1</td><td class=num>0</td></tr>
+<tr><td>Документы ГИС МТ</td><td class=num>2</td><td class=num>2</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td>Отчёты о нанесении</td><td class=num>2</td><td class=num>0</td><td class=num>2</td><td class=num>0</td></tr>
+<tr><td>Товары и GTIN</td><td class=num>1</td><td class=num>1</td><td class=num>0</td><td class=num>0</td></tr>
+<tr><td><b>Всего</b></td><td class=num><b>33</b></td><td class=num><b>24</b></td>
+<td class=num><b>9</b></td><td class=num><b>0</b></td></tr>
+</tbody></table></div>
+
+<h2>Что обычно просят</h2>
+<ul>
+<li>Проверить пачку кодов маркировки перед приёмкой товара.</li>
+<li>Посмотреть статус заказа на эмиссию кодов в СУЗ.</li>
+<li>Выгрузить коды, принадлежащие участнику оборота.</li>
+<li>Посмотреть маршрут товара по GTIN.</li>
+</ul>
+
+<h2>Как это работает в чате</h2>
+<pre><code>crpt_search_methods("...")   поиск метода словами, а не по имени эндпоинта
+crpt_describe_method(...)   параметры, пагинация, класс доступа
+crpt_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
+
+<footer>
+<p>Исходный код и установка: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT.
+Обновлено 2026-09-11.</p>
+</footer>
+</div>
+</body>
+</html>
