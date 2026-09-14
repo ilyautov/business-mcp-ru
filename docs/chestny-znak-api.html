@@ -60,6 +60,9 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <p class="note">Документация ЦРПТ открывается только после входа по КЭП, публичной спеки нет: <code>/api/v3/true-api/swagger.json</code> отдаёт 401. Поэтому пути здесь взяты из открытых SDK и у каждой записи каталога стоит <code>verified: false</code>. Это карта для разведки: пути надёжные, глаголы и параметры нужно подтвердить на живом контуре. Сервер показывает этот статус в describe_method, чтобы агент не выдавал догадку за факт.</p>
 
 <h2>Установка</h2>
+<h3>Без терминала</h3>
+<p>Скачайте <code>chestny-znak-mcp-ru-vX.Y.Z.mcpb</code> со <a href="https://github.com/ilyautov/chestny-znak-mcp-ru/releases/latest">страницы релизов</a> и откройте двойным щелчком. Claude Desktop поставит расширение сам и спросит токен в отдельном окне, в конфиг лезть не придётся.</p>
+<h3>В терминале</h3>
 <pre><code>uvx chestny-znak-mcp-ru</code></pre>
 <p>Переменные окружения: <code>CRPT_TOKEN</code>. Ключи можно не держать в
 окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
