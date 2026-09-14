@@ -31,6 +31,20 @@
 на четыре площадки, и спрос в его строке это сумма по ним. Здесь же каждый
 сервис ставится сам по себе.
 
+## Поставить без терминала
+
+У каждого сервера на странице релизов лежит файл `.mcpb`: скачайте и откройте
+двойным щелчком. Claude Desktop поставит расширение сам и спросит ключи в
+отдельном окне.
+
+| сервер | бандл |
+|---|---|
+| hh.ru | [hh-mcp-ru/releases](https://github.com/ilyautov/hh-mcp-ru/releases/latest) |
+| VK | [vk-mcp-ru/releases](https://github.com/ilyautov/vk-mcp-ru/releases/latest) |
+| Диадок | [diadoc-mcp-ru/releases](https://github.com/ilyautov/diadoc-mcp-ru/releases/latest) |
+| СБИС | [sbis-mcp-ru/releases](https://github.com/ilyautov/sbis-mcp-ru/releases/latest) |
+| Честный знак | [chestny-znak-mcp-ru/releases](https://github.com/ilyautov/chestny-znak-mcp-ru/releases/latest) |
+
 ## Поставить один
 
 ```bash
