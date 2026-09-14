@@ -46,10 +46,33 @@ MARKETPLACE_CATALOGS = [
 ]
 MARKETPLACE_TOTAL_FALLBACK = 1022
 TODAY = date.today().isoformat()
-# Версия для schema.org. Разъезжается с пакетами молча, поэтому проверяется
-# тестом, а не глазами.
-VERSION = "0.2.0"
+# Картинка для соцсетей. Одна на весь сайт: страницы отличаются заголовком,
+# а не обложкой, и пять почти одинаковых png только запутали бы.
+SOCIAL = f"{SITE}/assets/social-preview.png"
 DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
+VERSION_RE = re.compile(r'^version = "([^"]+)"', re.M)
+# Запасная версия для schema.org: сюда доходит, только если pyproject рядом нет.
+VERSION = "0.2.0"
+
+
+def version_of(repo: str) -> str:
+    """Версия для schema.org берётся из pyproject, а не из константы в коде.
+
+    Константа тут уже разъехалась с релизами молча: страницы обещали 0.2.0,
+    когда пакеты вышли как 0.2.3, а зонтик и вовсе опубликован как 0.1.0.
+    """
+    pyproject = (ROOT if repo == "business-mcp-ru" else NEIGHBOURS / repo) / "pyproject.toml"
+    if pyproject.exists():
+        m = VERSION_RE.search(pyproject.read_text(encoding="utf-8"))
+        if m:
+            return m.group(1)
+    return VERSION
+
+
+# Что Claude Desktop спросит в окне установки бандла. Слово разное: у СБИС это
+# не токен, и обещать «токен» там значит отправить человека искать не то.
+MCPB_SECRET = {"hh": "токен", "vk": "токен", "diadoc": "ключи",
+               "sbis": "идентификатор сессии", "crpt": "токен"}
 
 # Человеческие названия разделов каталога. Ключ — section в endpoints.yaml.
 SECTION_NAMES: dict[str, dict[str, str]] = {
@@ -109,7 +132,8 @@ PAGES = [
         "h1": "API hh.ru в ИИ-ассистенте",
         "desc": "MCP-сервер для API hh.ru: 133 метода официальной спеки. "
                 "Вакансии, отклики и приглашения, резюме, справочники, "
-                "статистика зарплат. Установка одной командой, ключ из dev.hh.ru.",
+                "статистика зарплат. Ставится двойным щелчком или одной "
+                "командой, ключ из dev.hh.ru.",
         "source": "официальная спека <code>api.hh.ru/openapi/specification/public</code>",
         "env": "HH_TOKEN, HH_APP_NAME",
         "keys": "dev.hh.ru → Мои приложения → создать приложение → access token. "
@@ -494,6 +518,11 @@ def head(title: str, desc: str, canonical: str, jsonld: dict) -> str:
 <meta property="og:description" content="{esc(desc)}" />
 <meta property="og:url" content="{canonical}" />
 <meta property="og:type" content="website" />
+<meta property="og:image" content="{SOCIAL}" />
+<meta property="og:image:width" content="1280" />
+<meta property="og:image:height" content="640" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="{SOCIAL}" />
 <title>{esc(title)}</title>
 <style>{CSS}</style>
 <script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>
@@ -547,7 +576,7 @@ def service_page(p: dict) -> str:
                 "description": p["desc"],
                 "url": f'{SITE}/{p["file"]}',
                 "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"},
-                "softwareVersion": VERSION,
+                "softwareVersion": version_of(p["repo"]),
                 "license": "https://opensource.org/licenses/MIT",
                 "codeRepository": f'https://github.com/ilyautov/{p["repo"]}',
             },
@@ -579,6 +608,9 @@ def service_page(p: dict) -> str:
 {caveat}
 
 <h2>Установка</h2>
+<h3>Без терминала</h3>
+<p>Скачайте <code>{p["repo"]}-vX.Y.Z.mcpb</code> со <a href="https://github.com/ilyautov/{p["repo"]}/releases/latest">страницы релизов</a> и откройте двойным щелчком. Claude Desktop поставит расширение сам и спросит {MCPB_SECRET[svc]} в отдельном окне, в конфиг лезть не придётся.</p>
+<h3>В терминале</h3>
 <pre><code>uvx {p["repo"]}</code></pre>
 <p>Переменные окружения: <code>{esc(p["env"])}</code>. Ключи можно не держать в
 окружении: у сервера есть инструменты управления кабинетами, они кладут ключи в
@@ -607,7 +639,9 @@ def service_page(p: dict) -> str:
 <h2>Как это работает в чате</h2>
 <pre><code>{svc}_search_methods("...")   поиск метода словами, а не по имени эндпоинта
 {svc}_describe_method(...)   параметры, пагинация, класс доступа
-{svc}_call_method(...)       вызов; запись спрашивает подтверждение</code></pre>
+{svc}_call_method(...)       чтение: идёт сразу, без подтверждения
+{svc}_write_method(...)      запись: нужен confirm_write
+{svc}_delete_method(...)     удаление: нужны оба подтверждения</code></pre>
 
 <h2>Частые ошибки и что они значат</h2>
 {errors_html}
@@ -617,8 +651,9 @@ def service_page(p: dict) -> str:
 
 <footer>
 <p>Исходный код: <a href="https://github.com/ilyautov/{p["repo"]}">github.com/ilyautov/{p["repo"]}</a>.
-Соседние серверы и общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT.
+Соседние серверы и общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT. <a href="/privacy.html">Политика конфиденциальности</a>.
 Обновлено {TODAY}.</p>
+<p>Проект лаборатории <a href="https://aifrontier.tech/">AI Frontier</a>. Остальные инструменты: <a href="https://ilyautov.github.io/">ilyautov.github.io</a>.</p>
 </footer>
 </div>
 </body>
@@ -641,7 +676,8 @@ def index_page() -> str:
         rows.append(
             f'<tr><td><a href="/{p["file"]}">{esc(p["h1"].split(" в ИИ")[0])}</a></td>'
             f'<td class=num>{n}</td><td class=num>{c["read"]}</td><td class=num>{c["write"]}</td>'
-            f'<td class=num>{c["destructive"]}</td><td><code>uvx {p["repo"]}</code></td></tr>'
+            f'<td class=num>{c["destructive"]}</td><td><code>uvx {p["repo"]}</code></td>'
+            f'<td><a href="https://github.com/ilyautov/{p["repo"]}/releases/latest">.mcpb</a></td></tr>'
         )
     table = "\n".join(rows)
     mp = marketplace_total()
@@ -715,7 +751,7 @@ def index_page() -> str:
                                 f"{methods(grand)} в каталогах."),
                 "url": SITE + "/",
                 "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"},
-                "softwareVersion": VERSION,
+                "softwareVersion": version_of("business-mcp-ru"),
                 "license": "https://opensource.org/licenses/MIT",
                 "codeRepository": REPO,
                 "author": {"@type": "Person", "name": "Илья Утов",
@@ -733,13 +769,14 @@ def index_page() -> str:
     }
     desc = (f"MCP-серверы для российских деловых сервисов: hh.ru, VK, Диадок, "
             f"СБИС и Честный знак. {grand} методов в каталоге, у каждого описание "
-            f"и класс доступа. Установка одной командой.")
+            f"и класс доступа. Ставится двойным щелчком или одной командой.")
     return f"""{head("MCP для российского бизнеса: hh.ru, VK, Диадок, СБИС, Честный знак", desc, SITE + "/", jsonld)}
 <div class="wrap">
 {nav()}
 <h1>MCP-серверы для российских деловых сервисов</h1>
 <p class="lead">{esc(desc)}</p>
 
+<p>Ставится двумя способами: файлом <code>.mcpb</code> двойным щелчком, без терминала, или одной командой в терминале. Ссылки на бандлы в таблице ниже.</p>
 <pre><code>uvx hh-mcp-ru</code></pre>
 
 <h2>Пять сервисов</h2>
@@ -752,10 +789,10 @@ def index_page() -> str:
 поэтому разойтись с кодом она не может. Класс доступа определяет поведение:
 чтение идёт сразу, запись и необратимые действия требуют подтверждения.</p>
 <div class="tw"><table>
-<thead><tr><th>Сервис</th><th>Методов</th><th>Чтение</th><th>Запись</th><th>Необратимое</th><th>Установка</th></tr></thead>
+<thead><tr><th>Сервис</th><th>Методов</th><th>Чтение</th><th>Запись</th><th>Необратимое</th><th>Установка</th><th>Бандл</th></tr></thead>
 <tbody>
 {table}
-<tr><td><b>Всего</b></td><td class=num><b>{grand}</b></td><td colspan=4></td></tr>
+<tr><td><b>Всего</b></td><td class=num><b>{grand}</b></td><td colspan=5></td></tr>
 </tbody></table></div>
 <p>Рядом живёт второй набор, под маркетплейсы:
 <a href="{MARKETPLACES}">Wildberries, Ozon, Яндекс Маркет и Авито</a>, ещё {methods(mp)}.
@@ -771,7 +808,9 @@ def index_page() -> str:
 зависят от размера API.</p>
 <pre><code>hh_search_methods("статистика зарплат")   поиск словами, не по имени эндпоинта
 hh_describe_method(...)                   параметры, пагинация, класс доступа
-hh_call_method(...)                       вызов; запись спрашивает подтверждение</code></pre>
+hh_call_method(...)                       чтение: идёт сразу, без подтверждения
+hh_write_method(...)                      запись: нужен confirm_write
+hh_delete_method(...)                     удаление: нужны оба подтверждения</code></pre>
 
 <h2>Что нужно, чтобы начать</h2>
 <p>Установка одинаковая везде, а вот доступ у сервисов стоит по-разному. Это
@@ -796,9 +835,11 @@ hh_call_method(...)                       вызов; запись спраши�
 {faq_html}
 
 <footer>
-<p>Исходный код: <a href="{REPO}">{REPO}</a>. Лицензия MIT. Обновлено {TODAY}.</p>
+<p>Исходный код: <a href="{REPO}">{REPO}</a>. Лицензия MIT. <a href="/privacy.html">Политика конфиденциальности</a>. Обновлено {TODAY}.</p>
 <p>Маркетплейсы (Wildberries, Ozon, Яндекс Маркет, Авито) живут отдельно:
 <a href="{MARKETPLACES}">marketplaces-mcp-ru</a>.</p>
+<p>Складской и торговый учёт в МойСкладе: <a href="https://moysklad-mcp-ru.aifrontier.tech/">moysklad-mcp-ru</a>.</p>
+<p>Проект лаборатории <a href="https://aifrontier.tech/">AI Frontier</a>. Остальные инструменты: <a href="https://ilyautov.github.io/">ilyautov.github.io</a>.</p>
 </footer>
 </div>
 </body>
@@ -807,11 +848,15 @@ hh_call_method(...)                       вызов; запись спраши�
 
 
 def sitemap() -> str:
-    urls = [SITE + "/"] + [f'{SITE}/{p["file"]}' for p in PAGES]
+    # Политика конфиденциальности редко меняется и веса ей не нужно, но в карте
+    # она обязана быть: каталог коннекторов Claude проверяет её доступность.
+    urls = ([(SITE + "/", "weekly", "1.0")]
+            + [(f'{SITE}/{p["file"]}', "weekly", "0.8") for p in PAGES]
+            + [(f"{SITE}/privacy.html", "monthly", "0.3")])
     body = "\n".join(
         f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{TODAY}</lastmod>\n"
-        f"    <changefreq>weekly</changefreq>\n    <priority>{'1.0' if i == 0 else '0.8'}</priority>\n  </url>"
-        for i, u in enumerate(urls)
+        f"    <changefreq>{freq}</changefreq>\n    <priority>{pri}</priority>\n  </url>"
+        for u, freq, pri in urls
     )
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

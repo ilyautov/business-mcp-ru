@@ -70,19 +70,24 @@ def test_no_code_ships_in_the_hub():
 def test_schema_version_matches_the_packages():
     """`softwareVersion` в schema.org это обещание поисковику.
 
-    Оно уже один раз разошлось: на страницах стояло 0.1.0, когда пакеты давно
-    выпустились как 0.2.0. Глазами такое не ловится, там нет ни ошибки, ни
-    падения, просто число живёт своей жизнью.
+    Оно уже дважды разошлось: сначала на страницах стояло 0.1.0 при пакетах
+    0.2.0, потом 0.2.0 при hh 0.2.3. Глазами такое не ловится, там нет ни
+    ошибки, ни падения, просто число живёт своей жизнью. Теперь оно приезжает
+    из pyproject, и тест сторожит не константу, а то, что лежит в docs: файл
+    мог остаться от прошлого релиза, если забыли перезапустить генератор.
     """
     bp = pages()
-    for p in bp.PAGES:
-        pyproject = bp.NEIGHBOURS / p["repo"] / "pyproject.toml"
+    for p in bp.PAGES + [{"repo": "business-mcp-ru", "file": "index.html"}]:
+        pyproject = (ROOT if p["repo"] == "business-mcp-ru"
+                     else bp.NEIGHBOURS / p["repo"]) / "pyproject.toml"
         if not pyproject.exists():          # соседей нет, проверять нечего
             continue
         m = re.search(r'^version = "([^"]+)"', pyproject.read_text(encoding="utf-8"), re.M)
         assert m, f'{p["repo"]}: в pyproject нет версии'
-        assert m.group(1) == bp.VERSION, (
-            f'{p["repo"]} выпущен как {m.group(1)}, а страницы пишут {bp.VERSION}')
+        page = (ROOT / "docs" / p["file"]).read_text(encoding="utf-8")
+        assert f'"softwareVersion": "{m.group(1)}"' in page, (
+            f'{p["file"]}: {p["repo"]} выпущен как {m.group(1)}, а страница '
+            f'обещает другое. Перезапустите scripts/build_pages.py')
 
 
 def test_both_subdomains_link_to_each_other():
