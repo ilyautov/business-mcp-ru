@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политика конфиденциальности business-mcp-ru: hh.ru, VK, Диадок, СБИС, Честный знак</title>
+<meta name="description" content="Пять серверов работают на вашей машине и ходят только в API своего сервиса. Телеметрии нет, ключи лежат локально в ~/.ru-mcp/cabinets.json с правами 600.">
+<meta property="og:title" content="Политика конфиденциальности business-mcp-ru: hh.ru, VK, Диадок, СБИС, Честный знак">
+<meta property="og:description" content="Пять серверов работают на вашей машине и ходят только в API своего сервиса. Телеметрии нет, ключи лежат локально в ~/.ru-mcp/cabinets.json с правами 600.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://business-mcp-ru.aifrontier.tech/privacy.html">
+<link rel="canonical" href="https://business-mcp-ru.aifrontier.tech/privacy.html">
+<style>:root{--bg:#fff;--fg:#16181d;--muted:#5b6472;--line:#e5e8ee;--accent:#2f6feb;--code:#f6f7f9}
+@media (prefers-color-scheme:dark){:root{--bg:#12141a;--fg:#e8eaee;--muted:#9aa3b2;--line:#272b35;--accent:#6f9cff;--code:#1a1d25}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:32px 20px 64px}
+header nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-bottom:28px}
+a{color:var(--accent)}h1{font-size:30px;line-height:1.25;margin:.2em 0 .4em}
+h2{font-size:21px;margin:2em 0 .6em}h3{font-size:17px;margin:1.4em 0 .4em}
+.lead{font-size:18px;color:var(--muted)}
+code{background:var(--code);padding:2px 5px;border-radius:4px;font-size:.9em}
+pre{background:var(--code);padding:14px 16px;border-radius:8px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tw{overflow-x:auto;margin:1em 0}table{min-width:520px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:1em 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card h3{margin:0 0 .3em;font-size:16px}.card p{margin:0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--muted)}
+.crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebPage", "name": "Политика конфиденциальности business-mcp-ru: hh.ru, VK, Диадок, СБИС, Честный знак", "description": "Пять серверов работают на вашей машине и ходят только в API своего сервиса. Телеметрии нет, ключи лежат локально в ~/.ru-mcp/cabinets.json с правами 600.", "url": "https://business-mcp-ru.aifrontier.tech/privacy.html", "inLanguage": "ru", "dateModified": "2026-09-14", "isPartOf": {"@type": "WebSite", "name": "business-mcp-ru", "url": "https://business-mcp-ru.aifrontier.tech/"}, "publisher": {"@type": "Person", "name": "Ilya Utov", "url": "https://github.com/ilyautov"}}
+</script>
+</head>
+<body>
+
+<div class="wrap">
+<header><nav>
+  <a href="/">business-mcp-ru</a>
+  <a href="/hh-api.html">API hh.ru</a>
+  <a href="/vk-api.html">VK API</a>
+  <a href="/diadoc-api.html">API Диадока (Контур)</a>
+  <a href="/sbis-api.html">API СБИС (Saby)</a>
+  <a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a>
+  <a href="https://marketplaces-mcp-ru.aifrontier.tech/">Маркетплейсы: WB, Ozon, Яндекс, Авито</a>
+</nav></header>
+<p class="crumbs"><a href="/">business-mcp-ru</a> → Политика конфиденциальности</p>
+<h1>Политика конфиденциальности</h1>
+<p class="lead">Пять серверов набора (<b>hh-mcp-ru</b>, <b>vk-mcp-ru</b>, <b>diadoc-mcp-ru</b>, <b>sbis-mcp-ru</b>, <b>chestny-znak-mcp-ru</b>) работают на вашей машине. Бэкенда, аналитики и телеметрии у проекта нет: собирать ваши данные попросту нечему.</p>
+
+<h2>Что обрабатывается и где</h2>
+<h3>Ключи</h3>
+<p>ключи и токены сервисов хранятся локально в <code>~/.ru-mcp/cabinets.json</code>: файл с правами <code>chmod 600</code>, каталог <code>chmod 700</code>. Они уходят только в заголовке авторизации тех запросов, которые инициирует ваш агент. Держать их на диске не обязательно: то же самое принимается через переменные окружения <code>HH_TOKEN и HH_APP_NAME, VK_TOKEN, DIADOC_CLIENT_ID и DIADOC_TOKEN, SBIS_SESSION_ID, CRPT_TOKEN</code>.</p>
+<h3>Данные сервиса</h3>
+<p>вакансии и отклики, посты и сообщества, накладные и акты, коды маркировки приходят напрямую из API в вашего агента и обрабатываются на вашей машине. Сервер их не сохраняет и никуда не пересылает.</p>
+<h3>Белый список доменов</h3>
+<p>Сетевой слой каждого сервера ходит только на домены своего сервиса: <code>.hh.ru, .vk.com, .kontur.ru, .sbis.ru и .saby.ru, .crpt.ru</code>. Запрос на любой другой адрес отклоняется до отправки, так что подменённый в ответе адрес никуда не уведёт.</p>
+
+<h2>Чего серверы не делают</h2>
+<ul>
+<li>Не отправляют телеметрию и аналитику.</li>
+<li>Не «звонят домой»: внешних сервисов автора не существует.</li>
+<li>Не передают ключи или данные третьим лицам.</li>
+<li>Не пишут секреты в репозиторий, в конфиг клиента или в чат.</li>
+</ul>
+
+<h2>Третьи стороны</h2>
+<p>Их ровно две, и обе выбираете вы сами.</p>
+<div class="cards">
+  <div class="card"><h3>hh.ru, VK, Контур Диадок, СБИС и Честный знак</h3><p>Запросы идут в API сервиса по вашим ключам и от вашего имени. Что сервис делает с этими обращениями, описано в его собственной политике конфиденциальности: на неё мы не влияем.</p></div>
+  <div class="card"><h3>Ваш ИИ-клиент</h3><p>Claude, Cursor, Codex и другие: текст диалога обрабатывается по политике соответствующего провайдера. Ключ в чат вставлять не нужно, инструменты спроектированы так, чтобы секрет туда не попадал, а <code>hh_check_auth</code> показывает наличие ключа, но не сам ключ.</p></div>
+</div>
+
+<h2>Хранение и удаление</h2>
+<p>Ключи и кабинеты это ваши локальные файлы. Удаляются инструментом <code>hh_remove_cabinet, vk_remove_cabinet, diadoc_remove_cabinet, sbis_remove_cabinet и crpt_remove_cabinet</code> или удалением <code>~/.ru-mcp/cabinets.json</code>. Срок хранения задаёте вы: ничего не истекает само и ничего не копируется на сторону.</p>
+<p class="note">Политика обновляется вместе с релизами, актуальная версия всегда в репозитории каждого сервера. Вопросы и сообщения о проблемах: <a href="https://github.com/ilyautov/business-mcp-ru/issues">issues проекта</a>.</p>
+<p>Обновлено 14 сентября 2026 года.</p>
+
+<footer>
+<p>Исходный код пяти серверов: <a href="https://github.com/ilyautov/hh-mcp-ru">hh-mcp-ru</a>,
+<a href="https://github.com/ilyautov/vk-mcp-ru">vk-mcp-ru</a>,
+<a href="https://github.com/ilyautov/diadoc-mcp-ru">diadoc-mcp-ru</a>,
+<a href="https://github.com/ilyautov/sbis-mcp-ru">sbis-mcp-ru</a>,
+<a href="https://github.com/ilyautov/chestny-znak-mcp-ru">chestny-znak-mcp-ru</a>.
+Общий список: <a href="/">business-mcp-ru</a>. Лицензия MIT. Обновлено 2026-09-14.</p>
+<p>Проект лаборатории <a href="https://aifrontier.tech/">AI Frontier</a>. Остальные инструменты: <a href="https://ilyautov.github.io/">ilyautov.github.io</a>.</p>
+</footer>
+</div>
+
+</body>
+</html>
