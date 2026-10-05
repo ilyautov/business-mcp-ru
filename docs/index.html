@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="yandex-verification" content="d5488a184cbab7f7" /> <!-- pragma: allowlist secret, публичный код подтверждения прав -->
-<meta name="description" content="MCP-серверы для российских деловых сервисов: hh.ru, VK, Диадок, СБИС и Честный знак. 698 методов в каталоге, у каждого описание и класс доступа. Ставится двойным щелчком или одной командой." />
+<meta name="description" content="MCP-серверы для российских деловых сервисов: VK, Диадок, СБИС и Честный знак. 565 методов в каталоге, у каждого описание и класс доступа. Ставится двойным щелчком или одной командой." />
 <link rel="canonical" href="https://business-mcp-ru.aifrontier.tech/" />
-<meta property="og:title" content="MCP для российского бизнеса: hh.ru, VK, Диадок, СБИС, Честный знак" />
-<meta property="og:description" content="MCP-серверы для российских деловых сервисов: hh.ru, VK, Диадок, СБИС и Честный знак. 698 методов в каталоге, у каждого описание и класс доступа. Ставится двойным щелчком или одной командой." />
+<meta property="og:title" content="MCP для российского бизнеса: VK, Диадок, СБИС, Честный знак" />
+<meta property="og:description" content="MCP-серверы для российских деловых сервисов: VK, Диадок, СБИС и Честный знак. 565 методов в каталоге, у каждого описание и класс доступа. Ставится двойным щелчком или одной командой." />
 <meta property="og:url" content="https://business-mcp-ru.aifrontier.tech/" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://business-mcp-ru.aifrontier.tech/assets/social-preview.png" />
@@ -15,7 +15,7 @@
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://business-mcp-ru.aifrontier.tech/assets/social-preview.png" />
-<title>MCP для российского бизнеса: hh.ru, VK, Диадок, СБИС, Честный знак</title>
+<title>MCP для российского бизнеса: VK, Диадок, СБИС, Честный знак</title>
 <style>:root{--bg:#fff;--fg:#16181d;--muted:#5b6472;--line:#e5e8ee;--accent:#2f6feb;--code:#f6f7f9}
 @media (prefers-color-scheme:dark){:root{--bg:#12141a;--fg:#e8eaee;--muted:#9aa3b2;--line:#272b35;--accent:#6f9cff;--code:#1a1d25}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
@@ -40,14 +40,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:8px}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "business-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "Пять MCP-серверов для российских деловых сервисов, 698 методов в каталогах.", "url": "https://business-mcp-ru.aifrontier.tech/", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0", "license": "https://opensource.org/licenses/MIT", "codeRepository": "https://github.com/ilyautov/business-mcp-ru", "author": {"@type": "Person", "name": "Илья Утов", "url": "https://github.com/ilyautov"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Чем это отличается от обёртки над OpenAPI?", "acceptedAnswer": {"@type": "Answer", "text": "Обёртка отдаёт агенту сотни функций и надеется, что он разберётся. Здесь методы лежат каталогом: поиск словами, у каждого метода описание, пагинация и класс доступа. Перед записью агент обязан спросить."}}, {"@type": "Question", "name": "Почему восемнадцать инструментов, а не по одному на метод?", "acceptedAnswer": {"@type": "Answer", "text": "Потому что 698 описаний не помещаются в контекст и мешают модели думать. Сервер показывает 18 инструментов независимо от размера каталога: поиск метода, карточка метода, отдельно чтение, запись и удаление, работа с произвольным путём, карта разделов и кабинеты. Каталог при этом остаётся полным."}}, {"@type": "Question", "name": "Ключи уходят куда-то на сервер?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Сервер работает на машине пользователя, ключи лежат локально с правами 600. У каждого сервера список разрешённых доменов, и заголовок авторизации не покидает домен сервиса даже при вызове произвольного пути."}}, {"@type": "Question", "name": "Что мешает агенту удалить что-нибудь важное?", "acceptedAnswer": {"@type": "Answer", "text": "Класс доступа у каждого метода. Чтение идёт сразу, запись и необратимые действия требуют явного подтверждения. Классы проставлены в каталоге, а не угадываются по HTTP-глаголу: у VK и СБИС через POST идёт и чтение тоже."}}, {"@type": "Question", "name": "Нужен ли программист, чтобы это поставить?", "acceptedAnswer": {"@type": "Answer", "text": "Нужна одна команда и ключ сервиса. Сложность не в установке, а в получении доступа: у hh и VK ключ выдаётся сразу, у Диадока нужна лицензия, у Честного знака электронная подпись."}}, {"@type": "Question", "name": "Почему у Честного знака методы помечены непроверенными?", "acceptedAnswer": {"@type": "Answer", "text": "Машиночитаемой спеки у ЦРПТ нет, поэтому пути взяты из открытых SDK, а не сгенерированы автоматически. Документация открыта на docs.crpt.ru, сверить есть с чем, и сервер честно показывает статус вместо догадки."}}, {"@type": "Question", "name": "Можно поставить только один сервис?", "acceptedAnswer": {"@type": "Answer", "text": "Так и задумано. Каждый сервис это отдельный пакет и отдельная команда установки: рекрутёру не нужен каталог маркировки, бухгалтеру не нужен каталог вакансий. Общее у них только ядро, и оно вынесено в отдельный пакет."}}, {"@type": "Question", "name": "Где серверы для маркетплейсов?", "acceptedAnswer": {"@type": "Answer", "text": "Wildberries, Ozon, Яндекс Маркет и Авито живут отдельным набором на marketplaces-mcp-ru.aifrontier.tech, там ещё 1022 метода. Устроены так же, каталогом и тремя инструментами. По одному маркетплейсу ставятся отдельные пакеты: ozon-mcp-ru, wildberries-mcp-ru, yandex-market-mcp-ru, avito-mcp-ru."}}, {"@type": "Question", "name": "С какими клиентами это работает?", "acceptedAnswer": {"@type": "Answer", "text": "С любым, который умеет MCP по stdio: Claude Desktop, Claude Code, Cursor, VS Code, Codex. Настройка это одна команда и переменные окружения."}}, {"@type": "Question", "name": "Сколько это стоит?", "acceptedAnswer": {"@type": "Answer", "text": "Серверы бесплатны, лицензия MIT, исходники открыты. Платить может потребоваться самому сервису: у Диадока лицензия, у Честного знака электронная подпись."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "business-mcp-ru", "applicationCategory": "DeveloperApplication", "operatingSystem": "macOS, Windows, Linux", "description": "На сайте представлены четыре MCP-сервера для российских деловых сервисов, 565 методов в каталогах.", "url": "https://business-mcp-ru.aifrontier.tech/", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "softwareVersion": "0.1.0", "license": "https://opensource.org/licenses/MIT", "codeRepository": "https://github.com/ilyautov/business-mcp-ru", "author": {"@type": "Person", "name": "Илья Утов", "url": "https://github.com/ilyautov"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Чем это отличается от обёртки над OpenAPI?", "acceptedAnswer": {"@type": "Answer", "text": "Обёртка отдаёт агенту сотни функций и надеется, что он разберётся. Здесь методы лежат каталогом: поиск словами, у каждого метода описание, пагинация и класс доступа. Перед записью агент обязан спросить."}}, {"@type": "Question", "name": "Почему восемнадцать инструментов, а не по одному на метод?", "acceptedAnswer": {"@type": "Answer", "text": "Потому что 565 описаний не помещаются в контекст и мешают модели думать. Сервер показывает 18 инструментов независимо от размера каталога: поиск метода, карточка метода, отдельно чтение, запись и удаление, работа с произвольным путём, карта разделов и кабинеты. Каталог при этом остаётся полным."}}, {"@type": "Question", "name": "Ключи уходят куда-то на сервер?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Сервер работает на машине пользователя, ключи лежат локально с правами 600. У каждого сервера список разрешённых доменов, и заголовок авторизации не покидает домен сервиса даже при вызове произвольного пути."}}, {"@type": "Question", "name": "Что мешает агенту удалить что-нибудь важное?", "acceptedAnswer": {"@type": "Answer", "text": "Класс доступа у каждого метода. Чтение идёт сразу, запись и необратимые действия требуют явного подтверждения. Классы проставлены в каталоге, а не угадываются по HTTP-глаголу: у VK и СБИС через POST идёт и чтение тоже."}}, {"@type": "Question", "name": "Нужен ли программист, чтобы это поставить?", "acceptedAnswer": {"@type": "Answer", "text": "Нужна одна команда и ключ сервиса. Сложность не в установке, а в получении доступа: у VK ключ выдаётся сразу, у Диадока нужна лицензия, у Честного знака электронная подпись."}}, {"@type": "Question", "name": "Почему у Честного знака методы помечены непроверенными?", "acceptedAnswer": {"@type": "Answer", "text": "Машиночитаемой спеки у ЦРПТ нет, поэтому пути взяты из открытых SDK, а не сгенерированы автоматически. Документация открыта на docs.crpt.ru, сверить есть с чем, и сервер честно показывает статус вместо догадки."}}, {"@type": "Question", "name": "Можно поставить только один сервис?", "acceptedAnswer": {"@type": "Answer", "text": "Так и задумано. Каждый сервис это отдельный пакет и отдельная команда установки: для работы с документами не нужен каталог маркировки. Общее у них только ядро, и оно вынесено в отдельный пакет."}}, {"@type": "Question", "name": "Где серверы для маркетплейсов?", "acceptedAnswer": {"@type": "Answer", "text": "Wildberries, Ozon, Яндекс Маркет и Авито живут отдельным набором на marketplaces-mcp-ru.aifrontier.tech, там ещё 1022 метода. Устроены так же, каталогом и тремя инструментами. По одному маркетплейсу ставятся отдельные пакеты: ozon-mcp-ru, wildberries-mcp-ru, yandex-market-mcp-ru, avito-mcp-ru."}}, {"@type": "Question", "name": "С какими клиентами это работает?", "acceptedAnswer": {"@type": "Answer", "text": "С любым, который умеет MCP по stdio: Claude Desktop, Claude Code, Cursor, VS Code, Codex. Настройка это одна команда и переменные окружения."}}, {"@type": "Question", "name": "Сколько это стоит?", "acceptedAnswer": {"@type": "Answer", "text": "Серверы бесплатны, лицензия MIT, исходники открыты. Платить может потребоваться самому сервису: у Диадока лицензия, у Честного знака электронная подпись."}}]}]}</script>
 </head>
 <body>
 
 <div class="wrap">
 <header><nav>
   <a href="/">business-mcp-ru</a>
-  <a href="/hh-api.html">API hh.ru</a>
   <a href="/vk-api.html">VK API</a>
   <a href="/diadoc-api.html">API Диадока (Контур)</a>
   <a href="/sbis-api.html">API СБИС (Saby)</a>
@@ -55,14 +54,13 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
   <a href="https://marketplaces-mcp-ru.aifrontier.tech/">Маркетплейсы: WB, Ozon, Яндекс, Авито</a>
 </nav></header>
 <h1>MCP-серверы для российских деловых сервисов</h1>
-<p class="lead">MCP-серверы для российских деловых сервисов: hh.ru, VK, Диадок, СБИС и Честный знак. 698 методов в каталоге, у каждого описание и класс доступа. Ставится двойным щелчком или одной командой.</p>
+<p class="lead">MCP-серверы для российских деловых сервисов: VK, Диадок, СБИС и Честный знак. 565 методов в каталоге, у каждого описание и класс доступа. Ставится двойным щелчком или одной командой.</p>
 
 <p>Ставится двумя способами: файлом <code>.mcpb</code> двойным щелчком, без терминала, или одной командой в терминале. Ссылки на бандлы в таблице ниже.</p>
-<pre><code>uvx hh-mcp-ru</code></pre>
+<pre><code>uvx vk-mcp-ru</code></pre>
 
-<h2>Пять сервисов</h2>
+<h2>Четыре сервиса</h2>
 <div class="cards">
-<div class="card"><h3><a href="/hh-api.html">API hh.ru</a></h3><p>133 метода. Вакансии, отклики и приглашения, резюме, справочники, статистика зарплат.</p></div>
 <div class="card"><h3><a href="/vk-api.html">VK API</a></h3><p>373 метода. Товары магазина сообщества, посты, реклама и статистика, диалоги, лид-формы.</p></div>
 <div class="card"><h3><a href="/diadoc-api.html">API Диадока (Контур)</a></h3><p>114 методов. Входящие и исходящие документы, статусы ЭДО, контрагенты, подписание, МЧД.</p></div>
 <div class="card"><h3><a href="/sbis-api.html">API СБИС (Saby)</a></h3><p>45 методов. Документы и этапы, подписание вложений, сертификаты, сотрудники, контрагенты.</p></div>
@@ -76,19 +74,18 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <div class="tw"><table>
 <thead><tr><th>Сервис</th><th>Методов</th><th>Чтение</th><th>Запись</th><th>Необратимое</th><th>Установка</th><th>Бандл</th></tr></thead>
 <tbody>
-<tr><td><a href="/hh-api.html">API hh.ru</a></td><td class=num>133</td><td class=num>92</td><td class=num>32</td><td class=num>9</td><td><code>uvx hh-mcp-ru</code></td><td><a href="https://github.com/ilyautov/hh-mcp-ru/releases/latest">.mcpb</a></td></tr>
 <tr><td><a href="/vk-api.html">VK API</a></td><td class=num>373</td><td class=num>159</td><td class=num>173</td><td class=num>41</td><td><code>uvx vk-mcp-ru</code></td><td><a href="https://github.com/ilyautov/vk-mcp-ru/releases/latest">.mcpb</a></td></tr>
 <tr><td><a href="/diadoc-api.html">API Диадока (Контур)</a></td><td class=num>114</td><td class=num>78</td><td class=num>29</td><td class=num>7</td><td><code>uvx diadoc-mcp-ru</code></td><td><a href="https://github.com/ilyautov/diadoc-mcp-ru/releases/latest">.mcpb</a></td></tr>
 <tr><td><a href="/sbis-api.html">API СБИС (Saby)</a></td><td class=num>45</td><td class=num>19</td><td class=num>21</td><td class=num>5</td><td><code>uvx sbis-mcp-ru</code></td><td><a href="https://github.com/ilyautov/sbis-mcp-ru/releases/latest">.mcpb</a></td></tr>
 <tr><td><a href="/chestny-znak-api.html">API Честного знака (ГИС МТ)</a></td><td class=num>33</td><td class=num>24</td><td class=num>9</td><td class=num>0</td><td><code>uvx chestny-znak-mcp-ru</code></td><td><a href="https://github.com/ilyautov/chestny-znak-mcp-ru/releases/latest">.mcpb</a></td></tr>
-<tr><td><b>Всего</b></td><td class=num><b>698</b></td><td colspan=5></td></tr>
+<tr><td><b>Всего</b></td><td class=num><b>565</b></td><td colspan=5></td></tr>
 </tbody></table></div>
 <p>Рядом живёт второй набор, под маркетплейсы:
 <a href="https://marketplaces-mcp-ru.aifrontier.tech/">Wildberries, Ozon, Яндекс Маркет и Авито</a>, ещё 1022 метода.
-Вместе это 1720 методов российских деловых API, разложенных одинаково.</p>
+Вместе это 1587 методов российских деловых API, разложенных одинаково.</p>
 
 <h2>Зачем каталог, если есть OpenAPI</h2>
-<p>Обычный путь это одна функция на эндпоинт. На 698 методах он ломается:
+<p>Обычный путь это одна функция на эндпоинт. На 565 методах он ломается:
 описания занимают контекст, модель начинает путать похожие методы, а стоимость
 запроса растёт на каждом вызове, даже когда нужен один метод из пятисот.</p>
 <p>Здесь каталог лежит файлом рядом с сервером, а инструментов всегда 18,
@@ -97,11 +94,11 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 зависят от размера API. Чтение, запись и удаление разведены по разным
 инструментам, поэтому чтение идёт без подтверждения, а запись без него не
 уходит.</p>
-<pre><code>hh_search_methods("статистика зарплат")   поиск словами, не по имени эндпоинта
-hh_describe_method(...)                   параметры, пагинация, класс доступа
-hh_call_method(...)                       чтение: идёт сразу, без подтверждения
-hh_write_method(...)                      запись: нужен confirm_write
-hh_delete_method(...)                     удаление: нужны оба подтверждения</code></pre>
+<pre><code>vk_search_methods("статистика сообщества") поиск словами, не по имени эндпоинта
+vk_describe_method(...)                    параметры, пагинация, класс доступа
+vk_call_method(...)                        чтение: идёт сразу, без подтверждения
+vk_write_method(...)                       запись: нужен confirm_write
+vk_delete_method(...)                      удаление: нужны оба подтверждения</code></pre>
 
 <h2>Что нужно, чтобы начать</h2>
 <p>Установка одинаковая везде, а вот доступ у сервисов стоит по-разному. Это
@@ -109,7 +106,6 @@ hh_delete_method(...)                     удаление: нужны оба п
 <div class="tw"><table>
 <thead><tr><th>Сервис</th><th>Что нужно</th><th>Цена входа</th></tr></thead>
 <tbody>
-<tr><td>hh.ru</td><td>Аккаунт на dev.hh.ru</td><td>Сразу, бесплатно</td></tr>
 <tr><td>VK</td><td>Приложение или токен сообщества на dev.vk.com</td><td>Сразу, бесплатно</td></tr>
 <tr><td>СБИС</td><td>Сотрудник с правами на интеграцию</td><td>Нужен действующий договор с СБИС</td></tr>
 <tr><td>Диадок</td><td>Письмо в Контур за идентификатором приложения</td><td>Для продуктива нужна лицензия</td></tr>
@@ -128,18 +124,18 @@ hh_delete_method(...)                     удаление: нужны оба п
 
 <h2>Частые вопросы</h2>
 <h3>Чем это отличается от обёртки над OpenAPI?</h3><p>Обёртка отдаёт агенту сотни функций и надеется, что он разберётся. Здесь методы лежат каталогом: поиск словами, у каждого метода описание, пагинация и класс доступа. Перед записью агент обязан спросить.</p>
-<h3>Почему восемнадцать инструментов, а не по одному на метод?</h3><p>Потому что 698 описаний не помещаются в контекст и мешают модели думать. Сервер показывает 18 инструментов независимо от размера каталога: поиск метода, карточка метода, отдельно чтение, запись и удаление, работа с произвольным путём, карта разделов и кабинеты. Каталог при этом остаётся полным.</p>
+<h3>Почему восемнадцать инструментов, а не по одному на метод?</h3><p>Потому что 565 описаний не помещаются в контекст и мешают модели думать. Сервер показывает 18 инструментов независимо от размера каталога: поиск метода, карточка метода, отдельно чтение, запись и удаление, работа с произвольным путём, карта разделов и кабинеты. Каталог при этом остаётся полным.</p>
 <h3>Ключи уходят куда-то на сервер?</h3><p>Нет. Сервер работает на машине пользователя, ключи лежат локально с правами 600. У каждого сервера список разрешённых доменов, и заголовок авторизации не покидает домен сервиса даже при вызове произвольного пути.</p>
 <h3>Что мешает агенту удалить что-нибудь важное?</h3><p>Класс доступа у каждого метода. Чтение идёт сразу, запись и необратимые действия требуют явного подтверждения. Классы проставлены в каталоге, а не угадываются по HTTP-глаголу: у VK и СБИС через POST идёт и чтение тоже.</p>
-<h3>Нужен ли программист, чтобы это поставить?</h3><p>Нужна одна команда и ключ сервиса. Сложность не в установке, а в получении доступа: у hh и VK ключ выдаётся сразу, у Диадока нужна лицензия, у Честного знака электронная подпись.</p>
+<h3>Нужен ли программист, чтобы это поставить?</h3><p>Нужна одна команда и ключ сервиса. Сложность не в установке, а в получении доступа: у VK ключ выдаётся сразу, у Диадока нужна лицензия, у Честного знака электронная подпись.</p>
 <h3>Почему у Честного знака методы помечены непроверенными?</h3><p>Машиночитаемой спеки у ЦРПТ нет, поэтому пути взяты из открытых SDK, а не сгенерированы автоматически. Документация открыта на docs.crpt.ru, сверить есть с чем, и сервер честно показывает статус вместо догадки.</p>
-<h3>Можно поставить только один сервис?</h3><p>Так и задумано. Каждый сервис это отдельный пакет и отдельная команда установки: рекрутёру не нужен каталог маркировки, бухгалтеру не нужен каталог вакансий. Общее у них только ядро, и оно вынесено в отдельный пакет.</p>
+<h3>Можно поставить только один сервис?</h3><p>Так и задумано. Каждый сервис это отдельный пакет и отдельная команда установки: для работы с документами не нужен каталог маркировки. Общее у них только ядро, и оно вынесено в отдельный пакет.</p>
 <h3>Где серверы для маркетплейсов?</h3><p>Wildberries, Ozon, Яндекс Маркет и Авито живут отдельным набором на marketplaces-mcp-ru.aifrontier.tech, там ещё 1022 метода. Устроены так же, каталогом и тремя инструментами. По одному маркетплейсу ставятся отдельные пакеты: ozon-mcp-ru, wildberries-mcp-ru, yandex-market-mcp-ru, avito-mcp-ru.</p>
 <h3>С какими клиентами это работает?</h3><p>С любым, который умеет MCP по stdio: Claude Desktop, Claude Code, Cursor, VS Code, Codex. Настройка это одна команда и переменные окружения.</p>
 <h3>Сколько это стоит?</h3><p>Серверы бесплатны, лицензия MIT, исходники открыты. Платить может потребоваться самому сервису: у Диадока лицензия, у Честного знака электронная подпись.</p>
 
 <footer>
-<p>Исходный код: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT. <a href="/privacy.html">Политика конфиденциальности</a>. Обновлено 2026-09-17.</p>
+<p>Исходный код: <a href="https://github.com/ilyautov/business-mcp-ru">https://github.com/ilyautov/business-mcp-ru</a>. Лицензия MIT. <a href="/privacy.html">Политика конфиденциальности</a>. Обновлено 2026-10-05.</p>
 <p>Маркетплейсы (Wildberries, Ozon, Яндекс Маркет, Авито) живут отдельно:
 <a href="https://marketplaces-mcp-ru.aifrontier.tech/">marketplaces-mcp-ru</a>.</p>
 <p>Складской и торговый учёт в МойСкладе: <a href="https://moysklad-mcp-ru.aifrontier.tech/">moysklad-mcp-ru</a>.</p>

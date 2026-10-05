@@ -21,7 +21,7 @@
 | [chestny-znak-mcp-ru](https://github.com/ilyautov/chestny-znak-mcp-ru) | API Честного знака (ГИС МТ) | 33 | 1 976 | [chestny-znak-api](https://business-mcp-ru.aifrontier.tech/chestny-znak-api.html) |
 | [diadoc-mcp-ru](https://github.com/ilyautov/diadoc-mcp-ru) | API Диадока (Контур) | 114 | 1 740 | [diadoc-api](https://business-mcp-ru.aifrontier.tech/diadoc-api.html) |
 | [vk-mcp-ru](https://github.com/ilyautov/vk-mcp-ru) | VK API | 373 | 1 344 | [vk-api](https://business-mcp-ru.aifrontier.tech/vk-api.html) |
-| [hh-mcp-ru](https://github.com/ilyautov/hh-mcp-ru) | API hh.ru | 133 | 911 | [hh-api](https://business-mcp-ru.aifrontier.tech/hh-api.html) |
+| [hh-mcp-ru](https://github.com/ilyautov/hh-mcp-ru) | API hh.ru | 133 | 911 | — |
 | [sbis-mcp-ru](https://github.com/ilyautov/sbis-mcp-ru) | API СБИС (Saby) | 45 | 877 | [sbis-api](https://business-mcp-ru.aifrontier.tech/sbis-api.html) |
 | [marketplaces-mcp-ru](https://github.com/ilyautov/marketplaces-mcp-ru) | Wildberries, Ozon, Яндекс Маркет, Авито | 1 022 | 6 503 | [marketplaces-mcp-ru.aifrontier.tech](https://marketplaces-mcp-ru.aifrontier.tech/) |
 

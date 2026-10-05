@@ -18,8 +18,6 @@ jobs:
       # checkout умеет класть только внутрь рабочей папки, поэтому соседи
       # приезжают в neighbours/, а путь передаётся через MCP_NEIGHBOURS_DIR.
       - uses: actions/checkout@v5
-        with: { repository: ilyautov/hh-mcp-ru, path: neighbours/hh-mcp-ru }
-      - uses: actions/checkout@v5
         with: { repository: ilyautov/vk-mcp-ru, path: neighbours/vk-mcp-ru }
       - uses: actions/checkout@v5
         with: { repository: ilyautov/diadoc-mcp-ru, path: neighbours/diadoc-mcp-ru }

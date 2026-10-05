@@ -1,7 +1,7 @@
 """Зонтик: список серверов в одном месте расходится с другим молча.
 
-Здесь проверяется ровно это: пять репозиториев перечислены и в зависимостях
-пакета, и в README, и в страницах, и числа методов везде одни и те же.
+Здесь проверяется список публикуемых страниц и его соответствие README.
+Мета-пакет по-прежнему содержит пять зависимостей, включая снятую с сайта.
 """
 from __future__ import annotations
 
@@ -19,10 +19,10 @@ def pages():
     return mod
 
 
-def test_five_servers_everywhere():
+def test_four_published_servers():
     bp = pages()
     repos = [p["repo"] for p in bp.PAGES]
-    assert len(repos) == 5 and len(set(repos)) == 5
+    assert len(repos) == 4 and len(set(repos)) == 4
 
     deps = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
@@ -35,12 +35,9 @@ def test_method_counts_in_readme_match_the_catalogs():
     """README обещает число методов. Каталог может уехать, README нет."""
     bp = pages()
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    total = 0
     for p in bp.PAGES:
         n = len(bp.load(p["svc"]))
-        total += n
         assert f"| {n} |" in readme, f'{p["repo"]}: в README нет «{n}»'
-    assert f"Всего {total} методов в пяти серверах" in readme
 
 
 def test_marketplaces_are_listed_too():
@@ -57,6 +54,15 @@ def test_pages_are_in_sitemap():
     for p in bp.PAGES:
         assert (ROOT / "docs" / p["file"]).exists(), p["file"]
         assert p["file"] in sitemap
+
+
+def test_removed_page_is_not_published_or_linked():
+    docs = ROOT / "docs"
+    assert not (docs / "hh-api.html").exists()
+    for path in docs.glob("*.html"):
+        assert "hh-api.html" not in path.read_text(encoding="utf-8"), path.name
+    assert "hh-api.html" not in (docs / "sitemap.xml").read_text(encoding="utf-8")
+    assert "hh-api.html" not in (docs / "llms.txt").read_text(encoding="utf-8")
 
 
 def test_no_code_ships_in_the_hub():
