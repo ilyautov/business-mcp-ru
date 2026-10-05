@@ -1,7 +1,6 @@
 """Зонтик: список серверов в одном месте расходится с другим молча.
 
-Здесь проверяется список публикуемых страниц и его соответствие README.
-Мета-пакет по-прежнему содержит пять зависимостей, включая снятую с сайта.
+Здесь проверяется, что список страниц, README и зависимости пакета совпадают.
 """
 from __future__ import annotations
 
@@ -24,10 +23,14 @@ def test_four_published_servers():
     repos = [p["repo"] for p in bp.PAGES]
     assert len(repos) == 4 and len(set(repos)) == 4
 
-    deps = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    block = re.search(r'^dependencies = \[(.*?)^\]', pyproject, re.M | re.S)
+    assert block, "нет списка зависимостей мета-пакета"
+    deps = re.findall(r'^\s+"([a-z-]+)[<>=]', block.group(1), re.M)
+    assert deps == repos, "зависимости мета-пакета расходятся со страницами"
+    assert "hh-mcp-ru" not in readme
     for repo in repos:
-        assert f'"{repo}>=' in deps, f"{repo} нет в зависимостях мета-пакета"
         assert repo in readme, f"{repo} нет в README"
 
 

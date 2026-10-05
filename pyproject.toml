@@ -1,16 +1,15 @@
 [project]
 name = "business-mcp-ru"
-version = "0.1.0"
-description = "Пять MCP-серверов для российских деловых сервисов: hh.ru, VK, Диадок, СБИС, Честный знак"
-keywords = ["mcp", "model-context-protocol", "russia", "hh", "vk", "diadoc", "sbis", "chestny-znak", "claude"]
+version = "0.2.0"
+description = "Четыре MCP-сервера для российских деловых сервисов: VK, Диадок, СБИС, Честный знак"
+keywords = ["mcp", "model-context-protocol", "russia", "vk", "diadoc", "sbis", "chestny-znak", "claude"]
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Ilya Utov" }]
-# Кода здесь нет намеренно: пакет существует, чтобы поставить пять серверов
+# Кода здесь нет намеренно: пакет существует, чтобы поставить четыре сервера
 # одной строкой. Каждый из них ставится и отдельно.
 dependencies = [
-    "hh-mcp-ru>=0.1,<1",
     "vk-mcp-ru>=0.1,<1",
     "diadoc-mcp-ru>=0.1,<1",
     "sbis-mcp-ru>=0.1,<1",
